@@ -1,0 +1,21 @@
+<template>
+  <div class="container">
+
+  </div>
+</template>
+
+<script>
+
+export default {
+  name: 'ideas',
+  components: {
+  },
+  data: function () {
+    return {
+
+    }
+  },
+  methods: {
+  }
+}
+</script>

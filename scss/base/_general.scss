@@ -1,0 +1,22 @@
+body {
+  padding: 0;
+  margin: 0;
+  background-color: $color-bg;
+  font-family: $font-primary;
+}
+
+.app {
+  min-height: 100vh;
+}
+
+.main {
+
+  &--withLeftSidebar {
+    width: calc(100% - #{$sidebarLeftWidth});
+    transform: translateX($sidebarLeftWidth);
+  }
+}
+
+p {
+  margin: 0;
+}

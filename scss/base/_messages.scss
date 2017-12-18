@@ -1,0 +1,9 @@
+.message {
+
+  &--success {
+    background-color: $color-success;
+    padding: rem-calc(20);
+    color: $color-white;
+    border-radius: rem-calc(10);
+  }
+}

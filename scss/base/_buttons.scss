@@ -1,0 +1,17 @@
+.button {
+  background-color: $color-secondary;
+  padding: rem-calc(12) rem-calc(21);
+  border-radius: rem-calc(4);
+  font-weight: 700;
+  color: $color-white;
+  transition: $transition-default;
+
+  &:hover, &:focus {
+    background-color: lighten($color-secondary, 10%);
+    color: $color-white;
+  }
+
+  &:disabled {
+    background-color: lighten($color-secondary, 50%);
+  }
+}

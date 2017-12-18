@@ -1,0 +1,82 @@
+$size: rem-calc(25);
+
+.cube {
+
+  &__leaf {
+    position: relative;
+    width: $size / 2;
+    height: $size / 2;
+    display: inline-block;
+    transform: scale(1.1);
+
+    &::before {
+      content: '';
+      background-color: $color-tertiary;
+      position: absolute;
+      left: 0;
+      top: 0;
+      display: block;
+      width: $size/2;
+      height: $size/2;
+      transform-origin: 100% 100%;
+      animation: folding 2.5s infinite linear both;
+    }
+
+    &--two {
+      transform: rotateZ(90deg) scale(1.1);
+
+      &::before {
+        animation-delay: .30s;
+        background-color: darken($color-tertiary, 5%);
+      }
+    }
+
+    &--three {
+      transform: rotateZ(270deg) scale(1.1);
+
+      &::before {
+        animation-delay: .90s;
+        background-color: darken($color-tertiary, 5%);
+      }
+    }
+
+    &--four {
+      transform: rotateZ(180deg) scale(1.1);
+
+      &::before {
+        animation-delay: .6s;
+        background-color: darken($color-tertiary, 10%);
+      }
+    }
+  }
+
+  &__folding {
+    width: $size;
+    height: $size;
+    display: inline-block;
+    font-size: 0;
+    transform: rotate(45deg);
+  }
+
+  &--inline {
+    display: inline-block;
+    margin-left: rem-calc(20);
+    margin-top: rem-calc(5);
+  }
+}
+
+//animation
+@keyframes folding {
+  0%, 10% {
+    transform: perspective(140px) rotateX(-180deg);
+    opacity: 0;
+  }
+  25%, 75% {
+    transform: perspective(140px) rotateX(0);
+    opacity: 1;
+  }
+  90%, 100% {
+    transform: perspective(140px) rotateX(180deg);
+    opacity: 0;
+  }
+}

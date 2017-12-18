@@ -1,0 +1,22 @@
+.sidebarLeft {
+  height: 100vh;
+  width: $sidebarLeftWidth;
+  background-color: $color-secondary;
+  border-right: 1px solid rgba(0, 0, 0, .1);
+  position: fixed;
+  left: 0;
+
+  &__content {
+    padding: rem-calc(20);
+  }
+
+  &__list {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  &__listLink {
+    color: $color-secondary-lighter;
+  }
+}

@@ -1,0 +1,34 @@
+.splashForm {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: table;
+  width: 100%;
+  min-height: 100%;
+  overflow: auto;
+  padding: rem-calc(32);
+
+  &__intro {
+    padding: rem-calc(12) 0;
+  }
+
+  &__contentWrapper {
+    display: table-cell;
+    vertical-align: middle;
+  }
+
+  &__form {
+    max-width: 100%;
+    width: rem-calc(500);
+    margin: 0 auto;
+  }
+
+  &__formContent {
+    background-color: white;
+    padding: rem-calc(32);
+    box-shadow: 0 1px 15px 1px rgba(113, 106, 202, .1);
+    border: 1px solid rgba(0, 0, 0, .1);
+    overflow: hidden;
+  }
+}

@@ -1,0 +1,38 @@
+.form {
+
+  &__label {
+    display: block;
+    color: $color-secondary;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: rem-calc(11);
+    margin-bottom: rem-calc(4);
+  }
+
+  &__group {
+    margin-top: rem-calc(24);
+  }
+
+  &__input, &__textarea {
+    border: 1px solid $color-border;
+    padding: rem-calc(12);
+    display: block;
+    width: 100%;
+    border-radius: rem-calc(4);
+
+    &:focus {
+      outline: none;
+    }
+
+    &--warning {
+      border: 1px solid $color-warning;
+    }
+  }
+
+  &__warning {
+    font-size:rem-calc(12);
+    margin-top: rem-calc(6);
+    display: block;
+    color: $color-warning;
+  }
+}
