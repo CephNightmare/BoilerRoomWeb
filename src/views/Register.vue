@@ -8,7 +8,7 @@
                 <div v-if="!loginSuccessfull" class="splashForm__formContent">
                     <p class="splashForm__intro text-enter">Start creating new ideas!</p>
 
-                    <form @submit.prevent="validateBeforeSubmit" class="form">
+                    <form @keyup.enter="submitForm()" @submit.prevent="validateBeforeSubmit" class="form">
                         <div class="form__group">
                             <label class="form__label" for="FirstName">First Name</label>
                             <input v-validate="'required|min:2'" autocomplete="false"
@@ -86,6 +86,7 @@
 <script>
     import SplashLogo from '../components/SplashLogo'
     import {Validator} from 'vee-validate';
+    import { Store } from 'vuex';
 
     export default {
         name: 'Register',
@@ -105,27 +106,7 @@
             submitForm() {
                 this.$validator.validateAll().then((result) => {
                     if (result) {
-                        var that = this;
-                        this.submitted = true;
-
-                        $.ajax({
-                            type: 'POST',
-                            url: 'http://boilerroomdata.gvandrunen.biz:8080/insert-user.php',
-                            data: $('.form').serialize(),
-                            success: function (data) {
-
-                                console.log(data);
-
-                                var parsedData = JSON.parse(data);
-
-                                if (parsedData["message"] == 1) {
-                                    that.submitted = false;
-                                    that.loginSuccessfull = true;
-                                }
-                            }
-                        });
-
-                        return;
+                        this.$store.dispatch('insertUser', $(".form"))
                     }
                 });
             }
