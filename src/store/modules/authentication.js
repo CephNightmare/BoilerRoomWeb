@@ -60,13 +60,13 @@ const actions = {
     insertUser({commit}, formData) {
         // commit(types.INSERTUSER_ATTEMPT); // show spinner
 
-        return new Promise(resolve => {
-            authentication.insertUser(formData).then(function(value) {
+        return new Promise((resolve, reject) => {
+            authentication.insertUser(formData).then(function() {
                 store.commit('UpdateAuthentication', formData);
-                return value
-            }), function(error) {
-                return reject(error);
-            }
+                resolve();
+            }).catch(e => {
+                reject(e);
+            });
         });
     },
 }

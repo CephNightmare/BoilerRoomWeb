@@ -5,7 +5,7 @@
 
                 <SplashLogo/>
 
-                <div v-if="!loginSuccessfull" class="splashForm__formContent">
+                <div v-if="!registerCompleted" class="splashForm__formContent">
                     <p class="splashForm__intro text-enter">Start creating new ideas!</p>
 
                     <form @keyup.enter="submitForm()" @submit.prevent="validateBeforeSubmit" class="form">
@@ -74,8 +74,13 @@
                         </div>
                     </form>
                 </div>
-                <div v-if="loginSuccessfull" class="splashForm__formContent">
-                    <p class="message message--success">Thank you for registering! Check your E-mail to activate your account and start building your ideas!</p>
+                <div v-if="registerSuccessfull" class="splashForm__formContent">
+                    <p class="message message--success">
+                        Thank you for registering! Check your E-mail to activate your account and start building your ideas!</p>
+                </div>
+                <div v-if="registerSuccessfull === false" class="splashForm__formContent">
+                    <p class="message message--warning">
+                        Something seems to have gone wrong. Try again in a new browser, or send us an E-mail.</p>
                 </div>
             </div>
 
@@ -86,14 +91,16 @@
 <script>
     import SplashLogo from '../components/SplashLogo'
     import {Validator} from 'vee-validate';
-    import { Store } from 'vuex';
+    import {Store} from 'vuex';
 
     export default {
         name: 'Register',
-        data: function() {
-            return{
+        data: function () {
+            return {
                 submitted: false,
-                loginSuccessfull: false
+                registerCompleted: null,
+                registerSuccessfull: null,
+                registerFailed: null
             }
         },
         components: {
@@ -106,7 +113,14 @@
             submitForm() {
                 this.$validator.validateAll().then((result) => {
                     if (result) {
-                        this.$store.dispatch('insertUser', $(".form"))
+                        this.submitted = true;
+                        this.$store.dispatch('insertUser', $(".form")).then(() => {
+                            this.registerCompleted = true;
+                            this.registerSuccessfull = true;
+                        }).catch((error) => {
+                            this.registerCompleted = true;
+                            this.registerSuccessfull = false;
+                        });
                     }
                 });
             }
@@ -115,52 +129,30 @@
             Validator.extend('verify_username', {
                 getMessage: field => `The ${field} has already been taken.`,
                 validate: value => new Promise((resolve) => {
-                    var isAvailable = true;
-
-                    $.ajax({
-                        type: 'POST',
-                        url: 'http://boilerroomdata.gvandrunen.biz:8080/validation/validate-username.php',
-                        data: 'username=' + value,
-                        success: function (data) {
-
-                            if (data == 0) {
-                                isAvailable = true;
-                            } else {
-                                isAvailable = false;
-                            }
-                        }
-                    });
-                    setTimeout(() => {
+                    this.$store.dispatch('verifyUser', value).then(() => {
                         resolve({
-                            valid: isAvailable
-                        });
-                    }, 500);
+                            valid: true
+                        })
+                    }).catch((error) => {
+                        resolve({
+                            valid: false
+                        })
+                    });
                 })
             });
 
             Validator.extend('verify_email', {
                 getMessage: field => `The ${field} has already been taken.`,
                 validate: value => new Promise((resolve) => {
-                    var isAvailable = true;
-
-                    $.ajax({
-                        type: 'POST',
-                        url: 'http://boilerroomdata.gvandrunen.biz:8080/validation/validate-email.php',
-                        data: 'email=' + value,
-                        success: function (data) {
-
-                            if (data == 0) {
-                                isAvailable = true;
-                            } else {
-                                isAvailable = false;
-                            }
-                        }
-                    });
-                    setTimeout(() => {
+                    this.$store.dispatch('verifyEmail', value).then(() => {
                         resolve({
-                            valid: isAvailable
-                        });
-                    }, 500);
+                            valid: true
+                        })
+                    }).catch((error) => {
+                        resolve({
+                            valid: false
+                        })
+                    });
                 })
             });
 

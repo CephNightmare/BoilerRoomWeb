@@ -1,9 +1,14 @@
 .message {
+  border-radius: rem-calc(10);
+  padding: rem-calc(20);
 
   &--success {
     background-color: $color-success;
-    padding: rem-calc(20);
     color: $color-white;
-    border-radius: rem-calc(10);
+  }
+
+  &--warning {
+    background-color: $color-warning;
+    color: $color-white;
   }
 }
