@@ -30,8 +30,6 @@ export default {
                 success: function (data) {
                     let msg = JSON.parse(data);
 
-                    console.log(msg);
-
                     if (msg["message"] == 1) {
                         resolve();
                     } else {

@@ -12,7 +12,7 @@
                         <div class="form__group">
                             <label class="form__label" for="Username">Username</label>
                             <input v-validate="'required'" autocomplete="false"
-                                   :class="{'form__input--warning': errors.has('first name') }" class="form__input"
+                                   :class="{'form__input--warning': errors.has('username') }" class="form__input"
                                    name="username" type="text" id="Username" placeholder="John123"/>
                             <span class="form__warning" :show="errors.has('username')">{{ errors.first('username')
                                 }}</span>
@@ -39,6 +39,10 @@
                         </div>
                     </form>
                 </div>
+                <div v-if="this.accountActivated" class="splashForm__formContent">
+                    <p class="message message--success">
+                        Your account has been activated! Log in to start your new venture!</p>
+                </div>
             </div>
 
         </div>
@@ -48,12 +52,14 @@
 <script>
     import SplashLogo from '../components/SplashLogo'
     import {Validator} from 'vee-validate';
+    import {Store} from 'vuex';
 
     export default {
         name: 'Login',
         data: function () {
             return {
-                submitted: false
+                submitted: false,
+                accountActivated: null
             }
         },
         components: {
@@ -66,52 +72,38 @@
             submitForm() {
                 this.$validator.validateAll().then((result) => {
                     if (result) {
-                        var that = this;
                         this.submitted = true;
-
-                        $.ajax({
-                            type: 'POST',
-                            url: 'http://boilerroomdata.gvandrunen.biz:8080/authenticate-user.php',
-                            data: $('.form').serialize(),
-                            success: function (data) {
-
-                                var parsedData = JSON.parse(data);
-
-                                if (parsedData["message"] == 1) {
-                                    console.log("test");
-                                    that.submitted = false;
-                                }
-                            }
+                        var formData = $(".form").serialize();
+                        this.$store.dispatch('authenticateUser', formData).then(() => {
+                            this.registerCompleted = true;
+                            this.registerSuccessfull = true;
+                        }).catch((error) => {
+                            this.registerCompleted = true;
+                            this.registerSuccessfull = false;
                         });
-
-                        return;
                     }
                 });
-            }
+            },
         },
         created() {
-            var getQueryString = function (field, url) {
-                var href = url ? url : window.location.href;
-                var reg = new RegExp('[?&]' + field + '=([^&#]*)', 'i');
-                var string = reg.exec(href);
+            const that = this;
+            const getQueryString = function (field, url) {
+                const href = url ? url : window.location.href;
+                const reg = new RegExp('[?&]' + field + '=([^&#]*)', 'i');
+                const string = reg.exec(href);
                 return string ? string[1] : null;
             };
 
-            var id = getQueryString('id');
-            var hash = getQueryString('hash');
+            const id = getQueryString('id');
+            const hash = getQueryString('hash');
 
             if (id && hash) {
-                $.ajax({
-                    type: 'POST',
-                    url: 'http://boilerroomdata.gvandrunen.biz:8080/activate-user.php',
-                    data: 'id=' + id + '&hash=' + hash,
-                    success: function (data) {
-
-                        var parsedData = JSON.parse(data);
-
-                        if (parsedData["message"] === 1) {
-                        }
-                    }
+                const data = 'id=' + id + '&hash=' + hash;
+                this.$store.dispatch('activateUser', data).then(() => {
+                    console.log("test");
+                    this.accountActivated = true;
+                }).catch((error) => {
+                    console.log("bad");
                 });
             }
         }

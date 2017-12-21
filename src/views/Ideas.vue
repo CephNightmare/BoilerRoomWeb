@@ -1,21 +1,22 @@
 <template>
-  <div class="container">
-
-  </div>
+    <div class="container">
+        <h1>test</h1>
+    </div>
 </template>
 
 <script>
 
-export default {
-  name: 'ideas',
-  components: {
-  },
-  data: function () {
-    return {
-
+    export default {
+        name: 'ideas',
+        components: {},
+        data: function () {
+            return {}
+        },
+        methods: {},
+        created() {
+            this.$store.dispatch('validateUser').catch(() => {
+                this.$router.push('/login');
+            });
+        }
     }
-  },
-  methods: {
-  }
-}
 </script>
