@@ -75,8 +75,9 @@
                         this.submitted = true;
                         var formData = $(".form").serialize();
                         this.$store.dispatch('authenticateUser', formData).then(() => {
-                            this.registerCompleted = true;
-                            this.registerSuccessfull = true;
+
+                            this.$router.push('ideas')
+
                         }).catch((error) => {
                             this.registerCompleted = true;
                             this.registerSuccessfull = false;
@@ -86,6 +87,7 @@
             },
         },
         created() {
+
             const that = this;
             const getQueryString = function (field, url) {
                 const href = url ? url : window.location.href;
@@ -100,10 +102,8 @@
             if (id && hash) {
                 const data = 'id=' + id + '&hash=' + hash;
                 this.$store.dispatch('activateUser', data).then(() => {
-                    console.log("test");
                     this.accountActivated = true;
                 }).catch((error) => {
-                    console.log("bad");
                 });
             }
         }

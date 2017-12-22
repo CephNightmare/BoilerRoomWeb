@@ -70,7 +70,6 @@ const actions = {
         });
     },
     authenticateUser({commit}, formData) {
-        console.log(formData);
         return new Promise((resolve, reject) => {
             authentication.authenticateUser(formData).then(function (value) {
                 store.commit('UpdateAuthentication', value);
@@ -89,8 +88,7 @@ const actions = {
         }
 
         return new Promise((resolve, reject) => {
-            if (token !== null || token !== undefined) {
-                console.log("test");
+            if (token !== null && token !== undefined) {
                 authentication.validateUser(token).catch(function (err) {
                     store.commit('ResetAuthentication');
                     reject(err);

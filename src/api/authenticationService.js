@@ -3,7 +3,7 @@ export default {
         return new Promise((resolve, reject) => {
             $.ajax({
                 type: 'POST',
-                url: 'http://boilerroomdata.gvandrunen.biz:8080/insert-user.php',
+                url: 'http://boilerroomdata.gvandrunen.biz/insert-user.php',
                 data: formData.serialize(),
                 success: function (data) {
 
@@ -24,10 +24,9 @@ export default {
         return new Promise((resolve, reject) => {
             $.ajax({
                 type: 'POST',
-                url: 'http://boilerroomdata.gvandrunen.biz:8080/activate-user.php',
+                url: 'http://boilerroomdata.gvandrunen.biz/activate-user.php',
                 data: data,
                 success: function (data) {
-
                     var parsedData = JSON.parse(data);
 
                     if (parsedData.hasOwnProperty("activated")) {
@@ -43,12 +42,12 @@ export default {
     },
     authenticateUser (formData) {
         return new Promise((resolve, reject) => {
+
             $.ajax({
                 type: 'POST',
-                url: 'http://boilerroomdata.gvandrunen.biz:8080/authenticate-user.php',
+                url: 'http://boilerroomdata.gvandrunen.biz/authenticate-user.php',
                 data: formData,
                 success: function (data) {
-
                     let msg = JSON.parse(data);
 
                     if (msg.hasOwnProperty("jwt") && msg.hasOwnProperty("username")) {
@@ -66,10 +65,9 @@ export default {
         return new Promise((resolve, reject) => {
             $.ajax({
                 type: 'POST',
-                url: 'http://boilerroomdata.gvandrunen.biz:8080/validate-user.php',
+                url: 'http://boilerroomdata.gvandrunen.biz/validate-user.php',
                 data: 'jwt=' + token,
                 success: function (data) {
-                    console.log(data);
                     let msg = JSON.parse(data);
 
                     if (msg.hasOwnProperty("approved")) {
@@ -78,7 +76,6 @@ export default {
                         reject(data)
                     }
                 }, error: function (error) {
-                    console.log(error);
                     resolve(error);
                 }
             });
