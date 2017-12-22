@@ -1,17 +1,37 @@
 export default {
-    verifyUser (value) {
+    verifyUserNonExisting (value) {
         return new Promise((resolve, reject) => {
             $.ajax({
                 type: 'POST',
-                url: 'http://boilerroomdata.gvandrunen.biz/validation/validate-username.php',
+                url: 'http://boilerroomdata.gvandrunen.biz/validation/validate-username-nonexisting.php',
                 data: 'username=' + value,
                 success: function (data) {
                     let msg = JSON.parse(data);
 
-                    if (msg["message"] == 1) {
+                    if (msg.hasOwnProperty("ok")) {
                         resolve();
                     } else {
-                        reject();
+                        reject(data);
+                    }
+                }, error: function (error) {
+                    reject(error);
+                }
+            });
+        });
+    },
+    verifyUserExisting (value) {
+        return new Promise((resolve, reject) => {
+            $.ajax({
+                type: 'POST',
+                url: 'http://boilerroomdata.gvandrunen.biz/validation/validate-username-existing.php',
+                data: 'username=' + value,
+                success: function (data) {
+                    let msg = JSON.parse(data);
+
+                    if (msg.hasOwnProperty("ok")) {
+                        resolve();
+                    } else {
+                        reject(data);
                     }
                 }, error: function (error) {
                     reject(error);

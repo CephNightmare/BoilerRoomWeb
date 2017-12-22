@@ -36,10 +36,20 @@ const mutations = {
 
 // actions
 const actions = {
-    verifyUser({commit}, value) {
+    verifyUserNonExisting({commit}, value) {
 
         return new Promise((resolve, reject) => {
-            validation.verifyUser(value).then(function() {
+            validation.verifyUserNonExisting(value).then(function() {
+                resolve();
+            }).catch(e => {
+                reject(e);
+            });
+        });
+    },
+    verifyUserExisting({commit}, value) {
+
+        return new Promise((resolve, reject) => {
+            validation.verifyUserExisting(value).then(function() {
                 resolve();
             }).catch(e => {
                 reject(e);

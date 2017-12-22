@@ -48,6 +48,7 @@ export default {
                 url: 'http://boilerroomdata.gvandrunen.biz/authenticate-user.php',
                 data: formData,
                 success: function (data) {
+
                     let msg = JSON.parse(data);
 
                     if (msg.hasOwnProperty("jwt") && msg.hasOwnProperty("username")) {

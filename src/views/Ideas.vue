@@ -12,11 +12,6 @@
         data: function () {
             return {}
         },
-        methods: {},
-        created() {
-            this.$store.dispatch('validateUser').catch(() => {
-                this.$router.push('/login');
-            });
-        }
+        methods: {}
     }
 </script>

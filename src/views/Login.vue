@@ -11,7 +11,7 @@
                     <form @submit.prevent="validateBeforeSubmit" class="form">
                         <div class="form__group">
                             <label class="form__label" for="Username">Username</label>
-                            <input v-validate="'required'" autocomplete="false"
+                            <input v-validate="'required|verify_username'" data-vv-validate-on="blur" autocomplete="false"
                                    :class="{'form__input--warning': errors.has('username') }" class="form__input"
                                    name="username" type="text" id="Username" placeholder="John123"/>
                             <span class="form__warning" :show="errors.has('username')">{{ errors.first('username')
@@ -87,6 +87,21 @@
             },
         },
         created() {
+
+            Validator.extend('verify_username', {
+                getMessage: field => `The ${field} is not known to us, please try another username.`,
+                validate: value => new Promise((resolve) => {
+                    this.$store.dispatch('verifyUserExisting', value).then(() => {
+                        resolve({
+                            valid: true
+                        })
+                    }).catch((error) => {
+                        resolve({
+                            valid: false
+                        })
+                    });
+                })
+            });
 
             const that = this;
             const getQueryString = function (field, url) {

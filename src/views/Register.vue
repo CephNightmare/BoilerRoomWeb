@@ -11,7 +11,7 @@
                     <form @keyup.enter="submitForm()" @submit.prevent="validateBeforeSubmit" class="form">
                         <div class="form__group">
                             <label class="form__label" for="FirstName">First Name</label>
-                            <input v-validate="'required|min:2'" autocomplete="false"
+                            <input v-validate="'required|min:2'" data-vv-validate-on="blur" autocomplete="false"
                                    :class="{'form__input--warning': errors.has('first name') }" class="form__input"
                                    name="first name" type="text" id="FirstName" placeholder="John"/>
                             <span class="form__warning" :show="errors.has('first name')">{{ errors.first('first name')
@@ -19,7 +19,7 @@
                         </div>
                         <div class="form__group">
                             <label class="form__label" for="LastName">Last Name</label>
-                            <input v-validate="'required|min:2'" autocomplete="false"
+                            <input v-validate="'required|min:2'" data-vv-validate-on="blur" autocomplete="false"
                                    :class="{'form__input--warning': errors.has('last name') }" class="form__input"
                                    name="last name" type="text" id="LastName"
                                    placeholder="Doe"/>
@@ -28,7 +28,7 @@
                         </div>
                         <div class="form__group">
                             <label class="form__label" for="Username">User Name</label>
-                            <input autocomplete="false" v-validate="'required|min:2|verify_username'"
+                            <input autocomplete="false" v-validate="'required|min:2|alpha_dash|verify_username'"
                                    :class="{'form__input--warning': errors.has('username') }" class="form__input"
                                    name="username" type="text" id="Username" placeholder="JohnDoe 123"/>
                             <span class="form__warning" :show="errors.has('username')">{{ errors.first('username')
@@ -36,7 +36,8 @@
                         </div>
                         <div class="form__group">
                             <label class="form__label" for="Email">E-mail address</label>
-                            <input v-validate="'required|email|verify_email'" autocomplete="false" name="email address"
+                            <input v-validate="'required|email|verify_email'" autocomplete="false"
+                                   data-vv-validate-on="blur" name="email address"
                                    :class="{'form__input--warning': errors.has('email address') }" class="form__input"
                                    type="email" id="Email" placeholder="john@example.com"/>
                             <span class="form__warning"
@@ -44,7 +45,8 @@
                         </div>
                         <div class="form__group">
                             <label class="form__label" for="Password">Password</label>
-                            <input class="form__input" type="password" v-validate="'required|min:6'" name="password"
+                            <input class="form__input" type="password" v-validate="'required|min:6'"
+                                   name="password"
                                    :class="{'form__input--warning': errors.has('password') }" id="Password"
                                    placeholder="Minimum 6 characters"/>
                             <span class="form__warning" :show="errors.has('password')">{{ errors.first('password')
@@ -129,7 +131,7 @@
             Validator.extend('verify_username', {
                 getMessage: field => `The ${field} has already been taken.`,
                 validate: value => new Promise((resolve) => {
-                    this.$store.dispatch('verifyUser', value).then(() => {
+                    this.$store.dispatch('verifyUserNonExisting', value).then(() => {
                         resolve({
                             valid: true
                         })
