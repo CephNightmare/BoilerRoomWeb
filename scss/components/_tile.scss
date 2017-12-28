@@ -1,0 +1,29 @@
+.tile {
+  background-color: $color-white;
+  display: inline-block;
+  position: relative;
+  max-width: rem-calc(410);
+  height: rem-calc(150);
+  width: 100%;
+  color: $color-secondary;
+  padding: rem-calc(20);
+
+  &__caption {
+    color: $color-quarternary;
+    font-size: rem-calc(12);
+    font-weight: 500;
+  }
+
+  &__title {
+    font-size: rem-calc(21);
+  }
+
+  &__progress {
+    height: rem-calc(4);
+    background-color: $color-tertiary;
+    width: 70%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+  }
+}

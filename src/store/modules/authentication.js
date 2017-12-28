@@ -4,8 +4,8 @@ import store from '../../store'
 // initial state
 // shape: [{ id, quantity }]
 const state = {
-    authToken: window.sessionStorage.getItem('authToken'),
-    username: window.sessionStorage.getItem('username')
+    authToken: window.localStorage.getItem('authToken'),
+    username: window.localStorage.getItem('username')
 }
 
 // getters
@@ -28,23 +28,23 @@ const mutations = {
         state.givenName = null;
         state.mainContractorId = null;
 
-        window.sessionStorage.removeItem('authToken'),
-            window.sessionStorage.removeItem('username');
+        window.localStorage.removeItem('authToken'),
+            window.localStorage.removeItem('username');
     },
 
     UpdateAuthentication (state, userData) {
         state.username = userData["username"];
         state.authToken = userData["jwt"];
 
-        window.sessionStorage.setItem('authToken', userData["jwt"]);
-        window.sessionStorage.setItem('username', userData["username"]);
+        window.localStorage.setItem('authToken', userData["jwt"]);
+        window.localStorage.setItem('username', userData["username"]);
     },
     ResetAuthentication (state) {
         state.username = null;
         state.authToken = null;
 
-        window.sessionStorage.removeItem('authToken');
-        window.sessionStorage.removeItem('username');
+        window.localStorage.removeItem('authToken');
+        window.localStorage.removeItem('username');
     }
 }
 
@@ -84,20 +84,32 @@ const actions = {
         let token = this.getters.authToken;
 
         if (token === null) {
-            token = window.sessionStorage.getItem("authToken");
+            console.log(token);
+            token = window.localStorage.getItem("authToken");
+            console.log(token);
         }
 
         return new Promise((resolve, reject) => {
             if (token !== null && token !== undefined) {
-                authentication.validateUser(token).catch(function (err) {
-                    store.commit('ResetAuthentication');
-                    reject(err);
-                });
+                authentication.validateUser(token)
+                    .then(function() {
+                        store.commit('UpdateAuthentication');
+                    })
+                    .catch(function (err) {
+                        store.commit('ResetAuthentication');
+                        reject(err);
+                    });
             } else {
                 reject({"message": "NOTOKEN"});
             }
         });
     },
+    logout({commit}){
+        return new Promise((resolve, reject) => {
+            store.commit('resetAuthentication');
+            resolve(null);
+        });
+    }
 };
 
 export default {

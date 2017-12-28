@@ -64,11 +64,13 @@ export default {
     },
     validateUser (token) {
         return new Promise((resolve, reject) => {
+
             $.ajax({
                 type: 'POST',
                 url: 'http://boilerroomdata.gvandrunen.biz/validate-user.php',
                 data: 'jwt=' + token,
                 success: function (data) {
+                    console.log(data);
                     let msg = JSON.parse(data);
 
                     if (msg.hasOwnProperty("approved")) {
