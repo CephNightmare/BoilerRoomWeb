@@ -4,6 +4,7 @@ import * as actions from './actions'
 import * as getters from './getters'
 import authentication from './modules/authentication'
 import validation from './modules/validation'
+import ideas from './modules/ideas'
 
 Vue.use(Vuex)
 
@@ -12,7 +13,8 @@ export default new Vuex.Store({
     getters,
     modules: {
         authentication,
-        validation
+        validation,
+        ideas
     },
     authentication: {
         authToken: null,

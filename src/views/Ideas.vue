@@ -1,42 +1,56 @@
 <template>
     <div class="container">
+
         <draggable class="tileList">
-            <a href="#" class="tileList__tile tile">
-                <span class="tile__caption">Privé</span>
-                <h3 class="tile__title">Boilerroom</h3>
+            <a v-for="idea in ideas" href="#" class="tileList__tile tile">
+                <span class="tile__caption">Private</span>
+                <h3 class="tile__title">{{ idea.IdeaName }}</h3>
 
                 <div class="tile__progress"></div>
                 <span class="tile__favorite">*</span>
             </a>
-            <a href="#" class="tileList__tile tile">
-                <span class="tile__caption">Openbaar</span>
-                <h3 class="tile__title">Camperplanning</h3>
-
-                <div class="tile__progress"></div>
-                <span class="tile__favorite">*</span>
-            </a>
-            <a href="#" class="tileList__tile tile">
-                <span class="tile__caption">Privé</span>
-                <h3 class="tile__title">Een mooi idee</h3>
-
-                <div class="tile__progress"></div>
-                <span class="tile__favorite">*</span>
+            <a href="#" draggable="false" @click="showModal = !showModal" class="tileList__tile tile tile--cta">
+                <h3 class="tile__title">Create an idea</h3>
             </a>
         </draggable>
+
+        <modal v-on:closeModal="showModal = false" componentName="InsertIdea" v-if="showModal === true" />
+        <modalOverlay @click.native="showModal = false" v-if="showModal === true"/>
     </div>
 </template>
 
 <script>
     import draggable from 'vuedraggable';
+    import modal from './components/Modal/Modal';
+    import modalOverlay from './components/Modal/ModalOverlay';
 
     export default {
         name: 'ideas',
         components: {
-            draggable
+            draggable,
+            modal,
+            modalOverlay
         },
-        data: function () {
-            return {}
+        data () {
+            return {
+                showModal: false,
+                ideas: null
+            }
         },
-        methods: {}
+        beforeMount(){
+            this.getIdeas()
+        },
+        methods: {
+            getIdeas() {
+                let ListIdeas;
+
+                this.$store.dispatch('getAllIdeas').then((data) => {
+                    ListIdeas = data["data"];
+                    this.ideas = ListIdeas;
+                }).catch((error) => {
+                    ListIdeas = "there are no ideas";
+                });
+            }
+        }
     }
 </script>

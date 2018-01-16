@@ -1,4 +1,5 @@
 $color-white: #ffffff;
+$color-black: #000000;
 
 $color-primary: #50e3c2;
 $color-primary-darker: #31947e;
@@ -18,7 +19,17 @@ $color-border: #d7d7d7;
 
 $color-warning: #ff0000;
 
+$color-lime: lime;
+$color-green: green;
+$color-red: red;
+$color-pink: pink;
+$color-yellow: yellow;
+$color-blue: blue;
+
 $transition-default: all .2s ease-in-out;
+
+$border-radius-default: 5px;
+
 
 $header-height: rem-calc(70);
 

@@ -6,13 +6,12 @@ export default {
                 url: 'http://boilerroomdata.gvandrunen.biz/insert-user.php',
                 data: formData.serialize(),
                 success: function (data) {
+                    data = JSON.parse(data);
 
-                    let msg = JSON.parse(data);
-
-                    if (msg.hasOwnProperty("inserted")) {
-                        resolve();
+                    if (data["ok"] === 1) {
+                        resolve(data);
                     } else {
-                        reject(data);
+                        reject();
                     }
                 }, error: function (error) {
                     reject(error);
@@ -27,12 +26,12 @@ export default {
                 url: 'http://boilerroomdata.gvandrunen.biz/activate-user.php',
                 data: data,
                 success: function (data) {
-                    var parsedData = JSON.parse(data);
+                    data = JSON.parse(data);
 
-                    if (parsedData.hasOwnProperty("activated")) {
-                        resolve();
+                    if (data["ok"] === 1) {
+                        resolve(data);
                     } else {
-                        reject(data);
+                        reject();
                     }
                 }, error: function (error) {
                     reject(error);
@@ -48,13 +47,14 @@ export default {
                 url: 'http://boilerroomdata.gvandrunen.biz/authenticate-user.php',
                 data: formData,
                 success: function (data) {
+                    console.log(data);
 
-                    let msg = JSON.parse(data);
+                    data = JSON.parse(data);
 
-                    if (msg.hasOwnProperty("jwt") && msg.hasOwnProperty("username")) {
-                        resolve(msg);
+                    if (data["ok"] === 1) {
+                        resolve(data);
                     } else {
-                        reject(data);
+                        reject();
                     }
                 }, error: function (error) {
                     reject(error);
@@ -70,16 +70,16 @@ export default {
                 url: 'http://boilerroomdata.gvandrunen.biz/validate-user.php',
                 data: 'jwt=' + token,
                 success: function (data) {
-                    console.log(data);
-                    let msg = JSON.parse(data);
+                    data = JSON.parse(data);
 
-                    if (msg.hasOwnProperty("approved")) {
-                        resolve();
+                    if (data["ok"] === 1) {
+                        resolve(data);
                     } else {
-                        reject(data)
+                        reject();
                     }
                 }, error: function (error) {
-                    resolve(error);
+                    console.log(error);
+                    reject(error);
                 }
             });
         });

@@ -1,0 +1,12 @@
+//.popup-enter-active, .popup-leave-active {
+//  transition: all .5s cubic-bezier(.3, 0, 0, 1);
+//}
+
+.fade-enter, .fade-leave-to {
+  opacity: 0;
+}
+
+.popup-enter, .popup-leave-to {
+  opacity: 0;
+  transform: scale(.9);
+}

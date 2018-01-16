@@ -3,7 +3,7 @@
 import Vue from 'vue'
 import App from './App'
 import store from './store/'
-import { sync } from 'vuex-router-sync';
+import {sync} from 'vuex-router-sync';
 import router from './router'
 import VeeValidate from 'vee-validate';
 import vueDraggable from 'vuedraggable';
@@ -15,11 +15,11 @@ Vue.use(vueDraggable);
 const unsync = sync(store, router);
 
 new Vue({
-  el: '#app',
-  store,
-  router,
-  template: '<App/>',
-  components: {
-    App
-  }
+    el: '#app',
+    store,
+    router,
+    template: '<App/>',
+    components: {
+        App
+    }
 })

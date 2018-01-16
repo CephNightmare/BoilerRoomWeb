@@ -5,6 +5,8 @@
   font-weight: 700;
   color: $color-white;
   transition: $transition-default;
+  cursor: pointer;
+  display: inline-block;
 
   &:hover, &:focus {
     background-color: lighten($color-secondary, 10%);
@@ -13,5 +15,16 @@
 
   &:disabled {
     background-color: lighten($color-secondary, 50%);
+  }
+
+  &--ghost {
+    background-color: transparent;
+    border: 1px solid $color-secondary;
+    color: $color-secondary;
+
+    &:hover, &:focus {
+      background-color: #d3d5e6;
+      color: $color-secondary;
+    }
   }
 }

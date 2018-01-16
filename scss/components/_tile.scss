@@ -7,6 +7,9 @@
   width: 100%;
   color: $color-secondary;
   padding: rem-calc(20);
+  transition: $transition-default;
+  border-radius: $border-radius-default;
+  $tile: &;
 
   &__caption {
     color: $color-quarternary;
@@ -25,5 +28,23 @@
     position: absolute;
     bottom: 0;
     left: 0;
+  }
+
+  &--cta {
+    background-color: $color-tertiary;
+    border: 5px solid $color-tertiary;
+    color: $color-white;
+    display: table;
+
+    &:hover, &:focus {
+      color: $color-tertiary;
+      background-color: $color-white;
+    }
+
+    #{$tile}__title {
+      text-align: center;
+      display: table-cell;
+      vertical-align: middle;
+    }
   }
 }

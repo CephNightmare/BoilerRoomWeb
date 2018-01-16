@@ -1,4 +1,7 @@
 .form {
+  position: relative;
+  overflow: hidden;
+  $form: &;
 
   &__label {
     display: block;
@@ -19,6 +22,7 @@
     display: block;
     width: 100%;
     border-radius: rem-calc(4);
+    resize: vertical;
 
     &:focus {
       outline: none;
@@ -34,5 +38,51 @@
     margin-top: rem-calc(6);
     display: block;
     color: $color-warning;
+  }
+
+  &__content {
+    overflow: hidden;
+    transition: $transition-default;
+  }
+
+  &__slide {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    transform: translateX(100%);
+    transition: $transition-default;
+  }
+
+  &__buttons {
+    margin-top: 16px;
+    text-align: center;
+  }
+
+  &--loading {
+
+    #{$form}__slide--1 {
+      transform: translateX(0);
+    }
+
+    #{$form}__content {
+      transform: translateX(-100%);
+    }
+  }
+
+  &--success {
+
+    #{$form}__slide--1 {
+      transform: translateX(-100%)
+    }
+
+    #{$form}__slide--2 {
+      transform: translateX(0);
+    }
+
+    #{$form}__content {
+      transform: translateX(-100%);
+    }
   }
 }

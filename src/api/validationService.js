@@ -6,13 +6,14 @@ export default {
                 url: 'http://boilerroomdata.gvandrunen.biz/validation/validate-username-nonexisting.php',
                 data: 'username=' + value,
                 success: function (data) {
-                    let msg = JSON.parse(data);
+                    data = JSON.parse(data);
 
-                    if (msg.hasOwnProperty("ok")) {
-                        resolve();
+                    if(data["ok"] === 1) {
+                        resolve(data);
                     } else {
-                        reject(data);
+                        reject();
                     }
+
                 }, error: function (error) {
                     reject(error);
                 }
@@ -26,13 +27,14 @@ export default {
                 url: 'http://boilerroomdata.gvandrunen.biz/validation/validate-username-existing.php',
                 data: 'username=' + value,
                 success: function (data) {
-                    let msg = JSON.parse(data);
+                    data = JSON.parse(data);
 
-                    if (msg.hasOwnProperty("ok")) {
-                        resolve();
+                    if(data["ok"] === 1) {
+                        resolve(data);
                     } else {
-                        reject(data);
+                        reject();
                     }
+
                 }, error: function (error) {
                     reject(error);
                 }
@@ -46,12 +48,10 @@ export default {
                 url: 'http://boilerroomdata.gvandrunen.biz/validation/validate-email.php',
                 data: 'email=' + value,
                 success: function (data) {
-                    let msg = JSON.parse(data);
+                    data = JSON.parse(data);
 
-                    console.log(data);
-
-                    if (msg["message"] == 1) {
-                        resolve();
+                    if(data["ok"] === 1) {
+                        resolve(data);
                     } else {
                         reject();
                     }

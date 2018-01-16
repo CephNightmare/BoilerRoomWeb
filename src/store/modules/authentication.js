@@ -1,4 +1,5 @@
-import authentication from '../../api/authenticationService'
+import authenticationAPI from '../../api/authenticationService'
+import authentication from '../modules/authentication'
 import store from '../../store'
 
 // initial state
@@ -6,7 +7,7 @@ import store from '../../store'
 const state = {
     authToken: window.localStorage.getItem('authToken'),
     username: window.localStorage.getItem('username')
-}
+};
 
 // getters
 const getters = {
@@ -16,7 +17,7 @@ const getters = {
     username: function () {
         return state.username
     }
-}
+};
 
 // mutations
 const mutations = {
@@ -29,7 +30,7 @@ const mutations = {
         state.mainContractorId = null;
 
         window.localStorage.removeItem('authToken'),
-            window.localStorage.removeItem('username');
+        window.localStorage.removeItem('username');
     },
 
     UpdateAuthentication (state, userData) {
@@ -39,6 +40,12 @@ const mutations = {
         window.localStorage.setItem('authToken', userData["jwt"]);
         window.localStorage.setItem('username', userData["username"]);
     },
+
+    UpdateAuthenticationToken (state, token) {
+        state.authToken = token["jwt"];
+        window.localStorage.setItem('authToken', token["jwt"]);
+    },
+
     ResetAuthentication (state) {
         state.username = null;
         state.authToken = null;
@@ -46,14 +53,14 @@ const mutations = {
         window.localStorage.removeItem('authToken');
         window.localStorage.removeItem('username');
     }
-}
+};
 
 // actions
 const actions = {
     insertUser({commit}, formData) {
 
         return new Promise((resolve, reject) => {
-            authentication.insertUser(formData).then(function () {
+            authenticationAPI.insertUser(formData).then(function () {
                 resolve();
             }).catch(e => {
                 reject(e);
@@ -61,8 +68,9 @@ const actions = {
         });
     },
     activateUser({commit}, data) {
+
         return new Promise((resolve, reject) => {
-            authentication.activateUser(data).then(function (value) {
+            authenticationAPI.activateUser(data).then(function (value) {
                 resolve();
             }).catch(e => {
                 reject(e);
@@ -70,8 +78,9 @@ const actions = {
         });
     },
     authenticateUser({commit}, formData) {
+
         return new Promise((resolve, reject) => {
-            authentication.authenticateUser(formData).then(function (value) {
+            authenticationAPI.authenticateUser(formData).then(function (value) {
                 store.commit('UpdateAuthentication', value);
                 resolve();
             }).catch(e => {
@@ -81,19 +90,16 @@ const actions = {
     },
     validateUser({commit}) {
 
-        let token = this.getters.authToken;
-
-        if (token === null) {
-            console.log(token);
-            token = window.localStorage.getItem("authToken");
-            console.log(token);
-        }
 
         return new Promise((resolve, reject) => {
+            let token = authentication.getters.authToken();
+            console.log(token);
+
             if (token !== null && token !== undefined) {
-                authentication.validateUser(token)
-                    .then(function() {
-                        store.commit('UpdateAuthentication');
+                authenticationAPI.validateUser(token)
+                    .then(function(data) {
+                        store.commit('UpdateAuthenticationToken', data);
+                        resolve();
                     })
                     .catch(function (err) {
                         store.commit('ResetAuthentication');
@@ -107,6 +113,8 @@ const actions = {
     logout({commit}){
         return new Promise((resolve, reject) => {
             store.commit('resetAuthentication');
+            this.$router.push('/login');
+
             resolve(null);
         });
     }

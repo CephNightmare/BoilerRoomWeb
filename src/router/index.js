@@ -14,7 +14,6 @@ import Buttons from '@/views/components/Buttons'
 import SocialButtons from '@/views/components/SocialButtons'
 import Cards from '@/views/components/Cards'
 import Forms from '@/views/components/Forms'
-import Modals from '@/views/components/Modals'
 import Switches from '@/views/components/Switches'
 import Tables from '@/views/components/Tables'
 
@@ -82,11 +81,6 @@ export default new Router({
               path: 'forms',
               name: 'Forms',
               component: Forms
-            },
-            {
-              path: 'modals',
-              name: 'Modals',
-              component: Modals
             },
             {
               path: 'switches',
