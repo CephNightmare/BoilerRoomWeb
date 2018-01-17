@@ -15,7 +15,7 @@
         </draggable>
 
         <modal v-on:closeModal="showModal = false" componentName="InsertIdea" v-if="showModal === true" />
-        <modalOverlay @click.native="showModal = false" v-if="showModal === true"/>
+        <modalOverlay @click.native="getIdeas()" v-if="showModal === true"/>
     </div>
 </template>
 
@@ -42,6 +42,7 @@
         },
         methods: {
             getIdeas() {
+                this.showModal = false;
                 let ListIdeas;
 
                 this.$store.dispatch('getAllIdeas').then((data) => {
