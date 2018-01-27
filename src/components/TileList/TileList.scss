@@ -1,0 +1,13 @@
+.tileList {
+  margin: 42px -8px 0 -8px;
+
+  &__title {
+    font-size: 13px;
+    color: $color-secondary;
+    margin: 8px 8px 16px;
+  }
+
+  &__tile {
+    margin: 8px;
+  }
+}

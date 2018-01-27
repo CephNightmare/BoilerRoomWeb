@@ -9,7 +9,7 @@ export default {
 
                     data = JSON.parse(data);
 
-                    if(data["ok"] === 1) {
+                    if (data["ok"] === 1) {
                         resolve(data["data"]);
                     } else {
                         reject();
@@ -30,7 +30,7 @@ export default {
 
                     data = JSON.parse(data);
 
-                    if(data["ok"] === 1) {
+                    if (data["ok"] === 1) {
 
                         console.log(data);
 
@@ -39,6 +39,31 @@ export default {
                         reject();
                     }
                 }, error: function (error) {
+                    reject(error);
+                }
+            });
+        });
+    },
+    validateIdeaAccess (token, ideaID) {
+        console.log("ideaID = " + ideaID);
+        return new Promise((resolve, reject) => {
+            $.ajax({
+                type: 'POST',
+                url: 'http://boilerroomdata.gvandrunen.biz/ideas/validateIdeaAccess.php',
+                data: {"jwt": token, "ideaID": ideaID},
+                success: function (data) {
+                    console.log("allowed service");
+                    console.log(data);
+                    data = JSON.parse(data);
+
+                    if (data["ok"] === 1) {
+                        resolve(data);
+                    } else {
+                        reject();
+                    }
+                }, error: function (error) {
+                    console.log("not allowed service");
+                    console.log(error);
                     reject(error);
                 }
             });

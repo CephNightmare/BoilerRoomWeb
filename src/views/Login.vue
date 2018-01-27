@@ -3,7 +3,7 @@
         <div class="splashForm__contentWrapper">
             <div class="splashForm__form">
 
-                <SplashLogo/>
+                <Logo/>
 
                 <div class="splashForm__formContent">
                     <p class="splashForm__intro text-enter">Log in to start building your ideas.</p>
@@ -50,7 +50,7 @@
 </template>
 
 <script>
-    import SplashLogo from '../components/SplashLogo'
+    import Logo from '../components/logo/Logo'
     import {Validator} from 'vee-validate';
     import {Store} from 'vuex';
 
@@ -63,7 +63,7 @@
             }
         },
         components: {
-            SplashLogo
+            Logo
         },
         methods: {
             validateBeforeSubmit() {

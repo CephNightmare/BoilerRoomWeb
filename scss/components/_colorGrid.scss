@@ -11,7 +11,7 @@
     transition: $transition-default;
 
     &:hover, &--active {
-      border-color: $color-secondary;
+      border-color: $color-primary;
     }
   }
 }

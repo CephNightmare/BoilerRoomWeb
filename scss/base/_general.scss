@@ -9,18 +9,19 @@ body {
   min-height: 100vh;
 }
 
-.main {
-
-  &--withLeftSidebar {
-    width: calc(100% - #{$sidebarLeftWidth});
-    transform: translateX($sidebarLeftWidth);
-  }
-}
-
 .container {
   padding: 0 rem-calc(16);
 }
 
 p {
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 600;
   margin: 0;
 }

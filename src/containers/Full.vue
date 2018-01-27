@@ -2,12 +2,9 @@
   <div class="app">
     <div class="app-body">
 
-      <Sidebar :navItems="nav"/>
-
-      <main class="main main--withLeftSidebar">
+      <main class="main">
         <AppHeader/>
-        <breadcrumb :list="list"/>
-          <router-view></router-view>
+        <router-view></router-view>
       </main>
       <!--<AppAside/>-->
     </div>
@@ -16,15 +13,12 @@
 
 <script>
 import nav from '../_nav'
-import { Header as AppHeader, Sidebar, Aside as AppAside, Breadcrumb } from '../components/'
+import AppHeader from '../components/header/header.vue'
 
 export default {
   name: 'full',
   components: {
-    AppHeader,
-    Sidebar,
-    AppAside,
-    Breadcrumb
+    AppHeader
   },
   data () {
     return {

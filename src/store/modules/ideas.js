@@ -36,6 +36,15 @@ const actions = {
             });
         });
     },
+    validateIdeaAccess ({commit}, ideaID) {
+        return new Promise((resolve, reject) => {
+            ideas.validateIdeaAccess(authentication.getters.authToken(), ideaID).then(function (data) {
+                resolve(data);
+            }).catch(e => {
+                reject();
+            });
+        });
+    },
 };
 
 export default {

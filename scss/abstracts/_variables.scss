@@ -1,23 +1,16 @@
 $color-white: #ffffff;
 $color-black: #000000;
 
-$color-primary: #50e3c2;
-$color-primary-darker: #31947e;
-
-$color-secondary: #2c2e3e;
-$color-secondary-lighter: lighten($color-secondary, 30%);
-$color-secondary-darker: #282a3c;
-
-$color-tertiary: #9955d6;
-
-$color-quarternary: #c2cdde;
-
-$color-success: #31947e;
+$color-primary: #1B0F22;
+$color-secondary: #6F6B92;
 
 $color-bg: #f0f2f7;
 $color-border: #d7d7d7;
 
+
+
 $color-warning: #ff0000;
+$color-success: green;
 
 $color-lime: lime;
 $color-green: green;
@@ -30,7 +23,4 @@ $transition-default: all .2s ease-in-out;
 
 $border-radius-default: 5px;
 
-
-$header-height: rem-calc(70);
-
-$sidebarLeftWidth: rem-calc(250);
+$header-height: 140px;

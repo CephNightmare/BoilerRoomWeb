@@ -91,7 +91,7 @@
 </template>
 
 <script>
-    import SplashLogo from '../components/SplashLogo'
+    import SplashLogo from '../components/logo/Logo'
     import {Validator} from 'vee-validate';
     import {Store} from 'vuex';
 

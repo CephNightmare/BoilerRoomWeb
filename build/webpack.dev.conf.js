@@ -17,6 +17,11 @@ module.exports = merge(baseWebpackConfig, {
     module: {
         rules: utils.styleLoaders({sourceMap: config.dev.cssSourceMap})
     },
+    resolve: {
+        alias: {
+            abstracts: path.resolve(__dirname, '../scss/abstracts/_all.scss') // relative to the location of the webpack config file!
+        }
+    },
     // cheap-module-eval-source-map is faster for development
     devtool: '#cheap-module-eval-source-map',
     plugins: [
