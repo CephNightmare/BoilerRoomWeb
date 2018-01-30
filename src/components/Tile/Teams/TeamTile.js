@@ -1,5 +1,5 @@
 export default {
-    name: 'modal',
+    name: 'teamTile',
     data () {
         return {
         }
@@ -7,6 +7,6 @@ export default {
     props: {
         ID: "",
         path: "",
-        IdeaName: "",
+        TeamName: "",
     }
 }

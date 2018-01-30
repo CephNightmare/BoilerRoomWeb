@@ -3,9 +3,9 @@
   &__block {
     font-size: 0;
     display: inline-block;
-    width: rem-calc(30);
-    height: rem-calc(30);
-    border-radius: rem-calc(7);
+    width: 30px;
+    height: 30px;
+    border-radius: 7px;
     border: 2px solid $color-bg;
     cursor: pointer;
     transition: $transition-default;

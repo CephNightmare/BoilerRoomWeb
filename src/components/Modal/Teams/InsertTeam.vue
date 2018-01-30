@@ -3,34 +3,19 @@
           v-bind:class="{'form--loading': (this.submitted && !this.success), 'form--success': (this.submitted && this.success)}">
         <div class="form__content">
             <div class="form__group">
-                <label class="form__label" for="IdeaName">Idea name</label>
+                <label class="form__label" for="teamName">Team name</label>
                 <input v-validate="'required|min:3'" data-vv-validate-on="blur"
-                       :class="{'form__input--warning': errors.has('Idea name') }" class="form__input"
-                       name="Idea name" type="text" id="IdeaName" placeholder="A new flowershop"/>
-                <span class="form__warning" :show="errors.has('Idea name')">{{ errors.first('Idea name')
+                       :class="{'form__input--warning': errors.has('Team name') }" class="form__input"
+                       name="Team name" type="text" id="teamName" placeholder="BLiS Digital"/>
+                <span class="form__warning" :show="errors.has('Team name')">{{ errors.first('Team name')
                     }}</span>
             </div>
             <div class="form__group">
-                <label class="form__label" for="Category">Category</label>
-                <input class="form__input" type="text" v-validate="'required'" name="Category"
-                       :class="{'form__input--warning': errors.has('Category') }" id="Category"/>
-                <span class="form__warning" :show="errors.has('Category')">{{ errors.first('Category')
-                    }}</span>
-            </div>
-            <div class="form__group">
-                <label class="form__label" for="Category">Category color</label>
-                <input type="text" name="Category" class="colorGridValue is-hidden"/>
+                <label class="form__label" for="CategoryColor">Category color</label>
+                <input type="text" id="CategoryColor" name="CategoryColor" class="colorGridValue is-hidden"/>
 
                 <ColorGrid :list="items" />
 
-                <span class="form__warning" :show="errors.has('Short Description')">{{ errors.first('Short Description')
-                    }}</span>
-            </div>
-            <div class="form__group">
-                <label class="form__label" for="Category">A short description of your idea</label>
-                <textarea class="form__textarea" type="text" v-validate="'required'" name="Short Description"
-                          :class="{'form__input--warning': errors.has('Short Description') }"
-                          id="ShortDescription"></textarea>
                 <span class="form__warning" :show="errors.has('Short Description')">{{ errors.first('Short Description')
                     }}</span>
             </div>
@@ -71,7 +56,7 @@
                 <p class="checkMark__tagLine">
                     Great Job!
                     <br/>
-                    You've created your project, Do you want to go there now?
+                    You've created your team, Do you want add team members?
                 </p>
             </div>
             <div class="form__buttons">
@@ -91,6 +76,7 @@
         name: 'insertIdea',
         data () {
             return {
+                activeMessage: "",
                 submitted: false,
                 success: false,
                 items: [
@@ -121,16 +107,22 @@
 
                         window.setTimeout(function () {
                             let formData = $(".form").serialize();
-                            that.$store.dispatch('insertIdea', formData).then(() => {
+                            that.$store.dispatch('insertTeam', formData).then(() => {
                                 that.success = true;
                                 that.$emit('emit', 'updateList');
                             }).catch((error) => {
-                                console.log("Insert Idea Failed");
+                                console.log("Insert Team Failed");
                                 console.log(error);
                             });
                         }, 2000);
                     }
                 });
+            },
+            toggle: function (item) {
+                this.activeMessage = item;
+            },
+            isActive: function (item) {
+                return this.activeMessage === item
             }
         }
     }

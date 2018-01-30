@@ -9,6 +9,7 @@
   padding: 20px;
   transition: $transition-default;
   border-radius: $border-radius-default;
+  float: left;
   $tile: &;
 
   &__caption {
@@ -25,7 +26,6 @@
     background-color: $color-primary;
     border: 5px solid $color-primary;
     color: $color-white;
-    display: table;
 
     &:hover, &:focus {
       color: $color-primary;
