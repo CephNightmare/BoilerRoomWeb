@@ -13,7 +13,7 @@ export default {
         return {
             showModal: false,
             personalIdeas: null,
-            teamIdeas: null,
+            teamCollection: null,
             notAllowed: false
         }
     },
@@ -36,7 +36,7 @@ export default {
         getTeamIdeas() {
 
             this.$store.dispatch('getTeamIdeas').then((data) => {
-                this.teamIdeas = data["data"];
+                this.teamCollection = data["data"];
             }).catch((error) => {
             });
         },
