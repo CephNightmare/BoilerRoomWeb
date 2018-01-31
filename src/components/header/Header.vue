@@ -5,14 +5,9 @@
                 <Logo/>
 
                 <ul class="header__list">
-                    <li class="header__listItem">
-                        <router-link class="header__listLink header__listLink--active" to="ideas">Ideas</router-link>
-                    </li>
-                    <li class="header__listItem">
-                        <router-link class="header__listLink" to="ideas">Inspiration</router-link>
-                    </li>
-                    <li class="header__listItem">
-                        <router-link class="header__listLink" to="ideas">Teams</router-link>
+
+                    <li v-for="item in nav" class="header__listItem">
+                        <router-link class="header__listLink" :class="{'header__listLink--active': subIsActive(item.path)}" :to="item.path">{{ item.name }}</router-link>
                     </li>
                 </ul>
             </div>

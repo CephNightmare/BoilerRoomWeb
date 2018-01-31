@@ -1,36 +1,32 @@
 import modal from '../../../components/Modal/Modal.vue';
 import modalOverlay from '../../../components/Modal/ModalOverlay.vue';
-import ideaTiles from '../../../components/TileList/Ideas/IdeaTiles.vue';
+import teamTiles from '../../../components/TileList/Teams/TeamTiles.vue';
 
 export default {
-    name: 'ideas',
+    name: 'teams',
     components: {
         modal,
         modalOverlay,
-        ideaTiles
+        teamTiles
     },
     data () {
         return {
             showModal: false,
-            ideas: null,
+            teams: null,
             notAllowed: false
         }
     },
     beforeMount(){
-        this.getIdeas();
-
-        if(this.$route.params.validation) {
-            this.notAllowed = true;
-        }
+        this.getTeams();
     },
     methods: {
-        getIdeas() {
-            let ListIdeas;
+        getTeams() {
+            let ListTeams;
 
-            this.$store.dispatch('getAllIdeas').then((data) => {
-                this.ideas = data["data"];
+            this.$store.dispatch('getAllTeams').then((data) => {
+                this.teams = data["data"];
             }).catch((error) => {
-                ListIdeas = "there are no ideas";
+                ListTeams = "there are no teams";
             });
         },
         toggleModal() {

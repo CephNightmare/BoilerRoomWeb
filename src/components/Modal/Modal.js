@@ -1,4 +1,5 @@
 import InsertIdea from "./Ideas/InsertIdea.vue";
+import InsertTeam from "./Teams/InsertTeam.vue";
 
 export default {
     name: 'modal',
@@ -7,7 +8,8 @@ export default {
         }
     },
     components: {
-        InsertIdea
+        InsertIdea,
+        InsertTeam
     },
     props: {
         componentName: "",

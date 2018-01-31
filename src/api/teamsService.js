@@ -1,9 +1,12 @@
 export default {
-    insertIdea (formData, token) {
+    insertTeam (formData, token) {
         return new Promise((resolve, reject) => {
+
+            console.log(formData);
+
             $.ajax({
                 type: 'POST',
-                url: 'http://boilerroomdata.gvandrunen.biz/ideas/insert-idea.php',
+                url: 'http://boilerroomdata.gvandrunen.biz/teams/insert-team.php',
                 data: {"formData": formData, "jwt": token},
                 success: function (data) {
 
@@ -20,11 +23,11 @@ export default {
             });
         });
     },
-    getAllIdeas (token) {
+    getAllTeams (token) {
         return new Promise((resolve, reject) => {
             $.ajax({
                 type: 'POST',
-                url: 'http://boilerroomdata.gvandrunen.biz/ideas/get-all-ideas.php',
+                url: 'http://boilerroomdata.gvandrunen.biz/teams/get-all-teams.php',
                 data: {"jwt": token},
                 success: function (data) {
 

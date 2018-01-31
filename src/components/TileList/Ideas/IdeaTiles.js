@@ -1,15 +1,17 @@
-import Tile from "../Tile/Tile.vue";
+import IdeaTile from "../../Tile/Ideas/IdeaTile.vue";
 
 export default {
-    name: 'modal',
+    name: 'ideaTiles',
     data () {
         return {}
     },
     components: {
-        Tile
+        IdeaTile
     },
     props: {
         list: {},
+        listTitle: "",
+        listAddNew: ""
     },
     methods: {
     }

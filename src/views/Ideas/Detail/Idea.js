@@ -16,7 +16,10 @@ export default {
             this.$store.dispatch('validateIdeaAccess', ideaID).then((data) => {
                 console.log("allowed");
             }).catch((error) => {
-                console.log("not allowed");
+                this.$router.push({
+                    name: 'Ideas',
+                    params: { validation: 'NOT_ALLOWED' }
+                });
             });
         }
     }

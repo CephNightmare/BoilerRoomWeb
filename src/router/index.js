@@ -8,6 +8,8 @@ import Full from '@/containers/Full.vue'
 import Ideas from '@/views/Ideas/Overview/Ideas.vue'
 import Idea from '@/views/Ideas/Detail/Idea.vue'
 
+import Teams from '@/views/Teams/Base/Teams.vue'
+
 // Views - Pages
 import Page404 from '@/views/Page404.vue'
 import Page500 from '@/views/Page500.vue'
@@ -35,6 +37,11 @@ export default new Router({
                     path: 'idea/:id',
                     name: 'Idea Detail',
                     component: Idea
+                },
+                {
+                    path: 'teams',
+                    name: 'Teams',
+                    component: Teams
                 }
             ]
         },

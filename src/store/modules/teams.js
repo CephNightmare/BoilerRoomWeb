@@ -1,4 +1,4 @@
-import ideas from '../../api/ideasService'
+import teams from '../../api/teamsService'
 import authentication from '../modules/authentication'
 
 // initial state
@@ -16,34 +16,24 @@ const mutations = {
 
 // actions
 const actions = {
-    insertIdea({commit}, formData) {
-
+    insertTeam({commit}, formData) {
         return new Promise((resolve, reject) => {
-            ideas.insertIdea(formData, authentication.getters.authToken()).then(function () {
+            teams.insertTeam(formData, authentication.getters.authToken()).then(function () {
                 resolve();
             }).catch(e => {
                 reject();
             });
         });
     },
-    getAllIdeas({commit}) {
+    getAllTeams({commit}) {
         return new Promise((resolve, reject) => {
-            ideas.getAllIdeas(authentication.getters.authToken()).then(function (data) {
+            teams.getAllTeams(authentication.getters.authToken()).then(function (data) {
                 resolve(data);
             }).catch(e => {
                 reject();
             });
         });
-    },
-    validateIdeaAccess ({commit}, ideaID) {
-        return new Promise((resolve, reject) => {
-            ideas.validateIdeaAccess(authentication.getters.authToken(), ideaID).then(function (data) {
-                resolve(data);
-            }).catch(e => {
-                reject();
-            });
-        });
-    },
+    }
 };
 
 export default {

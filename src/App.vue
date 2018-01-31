@@ -9,7 +9,10 @@
             if(this.$router.currentRoute.name != "Login" && this.$router.currentRoute.name != "Register") {
 
                 this.$store.dispatch('validateUser').catch(() => {
-                    this.$router.push('/login');
+                    this.$router.push({
+                        name: 'Login',
+                        validation: "NOT_ALLOWED"
+                    });
                 });
             }
         }
