@@ -12,6 +12,9 @@ export default {
 
                     data = JSON.parse(data);
 
+                    console.log("data is");
+                    console.log(data);
+
                     if (data["ok"] === 1) {
                         resolve(data["data"]);
                     } else {

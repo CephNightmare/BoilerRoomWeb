@@ -4,9 +4,4 @@
     </router-link>
 </template>
 
-<style lang="scss">
-    @import '~abstracts';
-    @import '../Tile';
-</style>
-
 <script src="./TeamTile.js"></script>

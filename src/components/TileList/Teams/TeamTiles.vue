@@ -15,6 +15,7 @@
 <style lang="scss">
     @import '~abstracts';
     @import '../TileList';
+    @import '../Tile';
 </style>
 
 <script src="./TeamTiles.js"></script>

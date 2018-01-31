@@ -34,7 +34,7 @@ export default new Router({
                     component: Ideas,
                 },
                 {
-                    path: 'idea/:id',
+                    path: 'ideas/:id',
                     name: 'Idea Detail',
                     component: Idea
                 },
