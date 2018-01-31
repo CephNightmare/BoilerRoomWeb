@@ -3,7 +3,7 @@
         <h2 class="tileList__title">{{ listTitle }}</h2>
 
         <template v-for="item in list">
-            <IdeaTile :path="'/Ideas/' + item.ID" :IdeaName="item.IdeaName" :ID="item.ID" />
+            <IdeaTile :path="'/Ideas/' + item.ID" :IdeaName="item.ideaName" :ID="item.ID" />
         </template>
 
         <a v-on:click="$emit('showModal');" class="tileList__tile tile tile--cta">

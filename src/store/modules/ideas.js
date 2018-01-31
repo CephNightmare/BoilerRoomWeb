@@ -26,9 +26,9 @@ const actions = {
             });
         });
     },
-    getAllIdeas({commit}) {
+    getPrivateIdeas({commit}) {
         return new Promise((resolve, reject) => {
-            ideas.getAllIdeas(authentication.getters.authToken()).then(function (data) {
+            ideas.getPrivateIdeas(authentication.getters.authToken()).then(function (data) {
                 resolve(data);
             }).catch(e => {
                 reject();

@@ -3,16 +3,13 @@ import authentication from '../modules/authentication'
 
 // initial state
 // shape: [{ id, quantity }]
-const state = {
-};
+const state = {};
 
 // getters
-const getters = {
-};
+const getters = {};
 
 // mutations
-const mutations = {
-};
+const mutations = {};
 
 // actions
 const actions = {
@@ -28,6 +25,15 @@ const actions = {
     getAllTeams({commit}) {
         return new Promise((resolve, reject) => {
             teams.getAllTeams(authentication.getters.authToken()).then(function (data) {
+                resolve(data);
+            }).catch(e => {
+                reject();
+            });
+        });
+    },
+    getTeamIdeas({commit}) {
+        return new Promise((resolve, reject) => {
+            teams.getTeamIdeas(authentication.getters.authToken()).then(function (data) {
                 resolve(data);
             }).catch(e => {
                 reject();

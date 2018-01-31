@@ -12,12 +12,14 @@ export default {
     data () {
         return {
             showModal: false,
-            ideas: null,
+            personalIdeas: null,
+            teamIdeas: null,
             notAllowed: false
         }
     },
     beforeMount(){
         this.getIdeas();
+        this.getTeamIdeas();
 
         if(this.$route.params.validation) {
             this.notAllowed = true;
@@ -25,12 +27,17 @@ export default {
     },
     methods: {
         getIdeas() {
-            let ListIdeas;
 
-            this.$store.dispatch('getAllIdeas').then((data) => {
-                this.ideas = data["data"];
+            this.$store.dispatch('getPrivateIdeas').then((data) => {
+                this.personalIdeas = data["data"];
             }).catch((error) => {
-                ListIdeas = "there are no ideas";
+            });
+        },
+        getTeamIdeas() {
+
+            this.$store.dispatch('getTeamIdeas').then((data) => {
+                this.teamIdeas = data["data"];
+            }).catch((error) => {
             });
         },
         toggleModal() {

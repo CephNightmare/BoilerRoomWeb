@@ -20,19 +20,17 @@ export default {
             });
         });
     },
-    getAllIdeas (token) {
+    getPrivateIdeas (token) {
         return new Promise((resolve, reject) => {
             $.ajax({
                 type: 'POST',
-                url: 'http://boilerroomdata.gvandrunen.biz/ideas/get-all-ideas.php',
+                url: 'http://boilerroomdata.gvandrunen.biz/ideas/get-private-ideas.php',
                 data: {"jwt": token},
                 success: function (data) {
 
                     data = JSON.parse(data);
 
                     if (data["ok"] === 1) {
-
-                        console.log(data);
 
                         resolve(data);
                     } else {

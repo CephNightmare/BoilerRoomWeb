@@ -50,7 +50,33 @@ export default {
             });
         });
     },
-    validateIdeaAccess (token, ideaID) {
+    getTeamIdeas (token) {
+        return new Promise((resolve, reject) => {
+            $.ajax({
+                type: 'POST',
+                url: 'http://boilerroomdata.gvandrunen.biz/teams/get-team-ideas.php',
+                data: {"jwt": token},
+                success: function (data) {
+
+                    data = JSON.parse(data);
+
+                    console.log(data["data"]);
+
+                    if (data["ok"] === 1) {
+
+                        console.log(data);
+
+                        resolve(data);
+                    } else {
+                        reject();
+                    }
+                }, error: function (error) {
+                    reject(error);
+                }
+            });
+        });
+    },
+    validateTeamAccess (token, ideaID) {
         console.log("ideaID = " + ideaID);
         return new Promise((resolve, reject) => {
             $.ajax({

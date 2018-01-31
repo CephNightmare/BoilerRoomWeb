@@ -70,6 +70,7 @@ export default {
                 url: 'http://boilerroomdata.gvandrunen.biz/validate-user.php',
                 data: 'jwt=' + token,
                 success: function (data) {
+                    console.log(data);
                     data = JSON.parse(data);
 
                     if (data["ok"] === 1) {

@@ -6,9 +6,18 @@
 
         <div class="row">
             <div class="small-24 column">
-                <ideaTiles v-on:showModal="showModal = true" listAddNew="Create an idea" listTitle="Personal ideas" :list="ideas" />
+                <ideaTiles v-on:showModal="showModal = true" listAddNew="Create an idea" listTitle="Personal ideas" :list="personalIdeas" />
             </div>
         </div>
+
+
+        <!--<div class="row">-->
+            <!--<div class="small-24 column">-->
+                <!--<template v-for="teamList in teams">-->
+                    <!--<ideaTiles v-on:showModal="showModal = true" listAddNew="Create an idea" listTitle="teamlist.title" :list="teamList.list" />-->
+                <!--</template>-->
+            <!--</div>-->
+        <!--</div>-->
 
         <modal v-on:closeModal="showModal = false" componentName="InsertIdea" v-on:updateList="getIdeas()"
                v-if="showModal === true"/>
