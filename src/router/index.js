@@ -5,8 +5,10 @@ import Router from 'vue-router'
 import Full from '@/containers/Full.vue'
 
 // Views
-import Ideas from '@/views/Ideas/Overview/Ideas.vue'
-import Idea from '@/views/Ideas/Detail/Idea.vue'
+import Ideas from '@/views/Ideas/Index.vue'
+import IdeaOverview from '@/views/Ideas/Overview/Overview.vue'
+import IdeaDetail from '@/views/Ideas/Detail/Detail.vue'
+import IdeaCards from '@/views/Ideas/Cards/Cards.vue'
 
 import Teams from '@/views/Teams/Base/Teams.vue'
 
@@ -29,14 +31,26 @@ export default new Router({
             component: Full,
             children: [
                 {
-                    path: '/ideas',
+                    path: '/Ideas',
                     name: 'Ideas',
                     component: Ideas,
-                },
-                {
-                    path: 'ideas/:id',
-                    name: 'Idea Detail',
-                    component: Idea
+                    children: [
+                        {
+                            path: 'Overview',
+                            name: 'Idea Overview',
+                            component: IdeaOverview,
+                        },
+                        {
+                            path: ':id',
+                            name: 'Idea Detail',
+                            component: IdeaDetail
+                        },
+                        {
+                            path: ':id/Cards',
+                            name: 'Cards',
+                            component: IdeaCards,
+                        }
+                    ]
                 },
                 {
                     path: 'teams',

@@ -3,7 +3,7 @@ import modalOverlay from '../../../components/Modal/ModalOverlay.vue';
 import ideaTiles from '../../../components/TileList/Ideas/IdeaTiles.vue';
 
 export default {
-    name: 'ideas',
+    name: 'ideaOverview',
     components: {
         modal,
         modalOverlay,

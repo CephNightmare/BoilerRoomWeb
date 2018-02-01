@@ -43,7 +43,7 @@ export default {
         });
     },
     validateIdeaAccess (token, ideaID) {
-        console.log("ideaID = " + ideaID);
+
         return new Promise((resolve, reject) => {
             $.ajax({
                 type: 'POST',

@@ -93,7 +93,6 @@ const actions = {
 
         return new Promise((resolve, reject) => {
             let token = authentication.getters.authToken();
-            console.log(token);
 
             if (token !== null && token !== undefined) {
                 authenticationAPI.validateUser(token)

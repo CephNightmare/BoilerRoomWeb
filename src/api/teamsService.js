@@ -2,8 +2,6 @@ export default {
     insertTeam (formData, token) {
         return new Promise((resolve, reject) => {
 
-            console.log(formData);
-
             $.ajax({
                 type: 'POST',
                 url: 'http://boilerroomdata.gvandrunen.biz/teams/insert-team.php',
@@ -11,9 +9,6 @@ export default {
                 success: function (data) {
 
                     data = JSON.parse(data);
-
-                    console.log("data is");
-                    console.log(data);
 
                     if (data["ok"] === 1) {
                         resolve(data["data"]);
@@ -38,8 +33,6 @@ export default {
 
                     if (data["ok"] === 1) {
 
-                        console.log(data);
-
                         resolve(data);
                     } else {
                         reject();
@@ -60,12 +53,7 @@ export default {
 
                     data = JSON.parse(data);
 
-                    console.log(data["data"]);
-
                     if (data["ok"] === 1) {
-
-                        console.log(data);
-
                         resolve(data);
                     } else {
                         reject();
@@ -77,7 +65,6 @@ export default {
         });
     },
     validateTeamAccess (token, ideaID) {
-        console.log("ideaID = " + ideaID);
         return new Promise((resolve, reject) => {
             $.ajax({
                 type: 'POST',

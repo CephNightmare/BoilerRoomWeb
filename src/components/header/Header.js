@@ -5,7 +5,7 @@ export default {
     data() {
         return {
             nav: [
-                {name: 'Ideas', path: '/Ideas'},
+                {name: 'Ideas', path: '/Ideas/Overview'},
                 {name: 'Teams', path: '/Teams'}
             ]
         }

@@ -1,11 +1,10 @@
 export default {
-    name: 'idea',
+    name: 'Cards',
     components: {
     },
     data () {
         return {
-            showModal: false,
-            ideas: null
+            cards: null
         }
     },
     beforeMount(){
@@ -13,8 +12,10 @@ export default {
     },
     methods: {
         validateIdeaAccess(ideaID) {
+
+            console.log(ideaID);
+
             this.$store.dispatch('validateIdeaAccess', ideaID).then((data) => {
-                console.log("allowed");
             }).catch((error) => {
                 this.$router.push({
                     name: 'Ideas',

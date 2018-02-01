@@ -125,8 +125,7 @@
                                 that.success = true;
                                 that.$emit('emit', 'updateList');
                             }).catch((error) => {
-                                console.log("Insert Idea Failed");
-                                console.log(error);
+
                             });
                         }, 2000);
                     }

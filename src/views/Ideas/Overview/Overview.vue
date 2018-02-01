@@ -27,4 +27,4 @@
     </div>
 </template>
 
-<script src="./Ideas.js"></script>
+<script src="./Overview.js"></script>
