@@ -1,7 +1,9 @@
 <template>
     <div class="container">
+        <h1>Cards</h1>
 
-       <h1>asdf</h1>
+        <CardList v-on:showModal="showModal = true" :list="personalIdeas" />
+
     </div>
 </template>
 

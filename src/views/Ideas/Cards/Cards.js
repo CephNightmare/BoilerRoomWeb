@@ -1,6 +1,9 @@
+import CardList from '../../../components/CardList/CardList.vue';
+
 export default {
     name: 'Cards',
     components: {
+        CardList
     },
     data () {
         return {
@@ -13,8 +16,6 @@ export default {
     methods: {
         validateIdeaAccess(ideaID) {
 
-            console.log(ideaID);
-
             this.$store.dispatch('validateIdeaAccess', ideaID).then((data) => {
             }).catch((error) => {
                 this.$router.push({
@@ -22,6 +23,15 @@ export default {
                     params: { validation: 'NOT_ALLOWED' }
                 });
             });
-        }
+
+        },
+        getTeamIdeas() {
+
+            this.$store.dispatch('getTeamIdeas').then((data) => {
+                this.teamCollection = data["data"];
+            }).catch((error) => {
+            });
+
+        },
     }
 }
