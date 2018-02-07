@@ -1,7 +1,7 @@
 <template>
     <transition name="popup">
         <div class="modal">
-            <component :is="dynamicComponent" v-on:emit="this.emitMethod"></component>
+            <slot></slot>
         </div>
     </transition>
 </template>

@@ -2,7 +2,15 @@ export default {
     name: 'ColorGrid',
     data () {
         return {
-            activeMessage: ""
+            activeMessage: "",
+            items: [
+                "blue",
+                "green",
+                "lime",
+                "pink",
+                "red",
+                "yellow"
+            ]
         }
     },
     props: {

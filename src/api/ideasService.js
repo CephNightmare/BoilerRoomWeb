@@ -10,7 +10,7 @@ export default {
                     data = JSON.parse(data);
 
                     if (data["ok"] === 1) {
-                        resolve(data["data"]);
+                        resolve(data["ideaID"]);
                     } else {
                         reject();
                     }

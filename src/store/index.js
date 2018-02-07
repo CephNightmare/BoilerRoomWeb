@@ -5,6 +5,7 @@ import * as getters from './getters'
 import authentication from './modules/authentication'
 import validation from './modules/validation'
 import ideas from './modules/ideas'
+import cards from './modules/cards'
 import teams from './modules/teams'
 
 Vue.use(Vuex)
@@ -16,7 +17,8 @@ export default new Vuex.Store({
         authentication,
         validation,
         ideas,
-        teams
+        teams,
+        cards
     },
     authentication: {
         authToken: null,

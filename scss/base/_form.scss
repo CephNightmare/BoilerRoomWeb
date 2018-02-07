@@ -60,6 +60,10 @@
     text-align: center;
   }
 
+  &__hidden {
+    display: none;
+  }
+
   &--modal {
     min-height: 500px;
   }

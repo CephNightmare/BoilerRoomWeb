@@ -7,6 +7,9 @@ export default {
             nav: [
                 {name: 'Ideas', path: '/Ideas/Overview'},
                 {name: 'Teams', path: '/Teams'}
+            ],
+            ideaNav: [
+                {name: 'Cards', path: 'Cards'}
             ]
         }
     },

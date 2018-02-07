@@ -19,8 +19,8 @@ const actions = {
     insertIdea({commit}, formData) {
 
         return new Promise((resolve, reject) => {
-            ideas.insertIdea(formData, authentication.getters.authToken()).then(function () {
-                resolve();
+            ideas.insertIdea(formData, authentication.getters.authToken()).then(function (data) {
+                resolve(data);
             }).catch(e => {
                 reject();
             });
