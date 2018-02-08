@@ -1,6 +1,6 @@
 import modal from '../../../components/Modal/Modal.vue';
 import modalOverlay from '../../../components/Modal/ModalOverlay.vue';
-import teamTiles from '../../../components/TileList/Teams/TeamTiles.vue';
+import Tile from '../../../components/Tile/Tile.vue';
 import ColorGrid from '../../../components/ColorGrid/ColorGrid.vue';
 
 export default {
@@ -8,7 +8,7 @@ export default {
     components: {
         modal,
         modalOverlay,
-        teamTiles,
+        Tile,
         ColorGrid
     },
     data () {

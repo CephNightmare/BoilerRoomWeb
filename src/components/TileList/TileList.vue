@@ -3,7 +3,9 @@
         <h2 class="tileList__title">{{ listTitle }}</h2>
 
         <template v-for="item in list">
-            <TeamTile :path="'/team/' + item.ID" :TeamName="item.teamName" :ID="item.ID" />
+            <router-link :to="'/team/' + item.ID" :key="item.ID" class="tileList__tile tile">
+                <h3 class="tile__title">{{ item.teamName }}</h3>
+            </router-link>
         </template>
 
         <a v-on:click="$emit('showModal');" class="tileList__tile tile tile--cta">
@@ -14,8 +16,8 @@
 
 <style lang="scss">
     @import '~abstracts';
-    @import '../TileList';
-    @import '../Tile';
+    @import '../Tile/TileList';
+    @import '../Tile/Tile';
 </style>
 
-<script src="./TeamTiles.js"></script>
+<script src="./TileList.js"></script>

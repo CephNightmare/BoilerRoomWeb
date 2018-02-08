@@ -1,27 +1,33 @@
 import modal from '../../../components/Modal/Modal.vue';
 import modalOverlay from '../../../components/Modal/ModalOverlay.vue';
 import CardList from '../../../components/CardList/CardList.vue';
+import Tile from '../../../components/Tile/Tile.vue';
 
 export default {
     name: 'Cards',
     components: {
         CardList,
+        Tile,
         modal,
         modalOverlay
     },
     data () {
         return {
             cards: null,
+            insertCardCollectionSuccess: false,
+            insertCardCollectionSubmitted: false,
+            showInsertCardCollectionModal: false,
             insertCardSuccess: false,
             insertCardSubmitted: false,
-            showModal: false,
+            showInsertCardModal: false,
             ideaID: null,
+            cardCollectionID: null,
         }
     },
     beforeMount(){
         this.validateIdeaAccess(this.$route.params.id);
-
-        this.setFormID(this.$route.params.id);
+        this.setIdeaID(this.$route.params.id);
+        this.getIdeaCards(this.$route.params.id);
     },
     methods: {
         validateIdeaAccess(ideaID) {
@@ -33,8 +39,12 @@ export default {
                 });
             });
         },
-        setFormID(ideaID) {
+        setIdeaID(ideaID) {
             this.ideaID = ideaID;
+        },
+        toggleInsertCardForm(cardCollectionID) {
+            this.cardCollectionID = cardCollectionID;
+            this.showInsertCardModal = true;
         },
         validateBeforeSubmit() {
             this.$validator.validateAll()
@@ -43,13 +53,13 @@ export default {
             this.$validator.validateAll().then((result) => {
                 if (result) {
                     let that = this;
-                    that.insertCardSubmitted = true;
+                    that.insertCardCollectionSubmitted = true;
 
                     window.setTimeout(function () {
                         let formData = $(".form").serialize();
                         that.$store.dispatch('insertCardCollection', formData).then(() => {
-                            that.insertCardSuccess = true;
-                            that.getIdeaCards();
+                            that.insertCardCollectionSuccess = true;
+                            that.getIdeaCards(that.$route.params.id);
                         }).catch((error) => {
 
                         });
@@ -57,11 +67,29 @@ export default {
                 }
             });
         },
-        getIdeaCards() {
-            // this.$store.dispatch('getIdeaCards').then((data) => {
-            //     this.teamCollection = data["data"];
-            // }).catch((error) => {
-            // });
+        insertCard () {
+            this.$validator.validateAll().then((result) => {
+                if (result) {
+                    let that = this;
+                    that.insertCardSubmitted = true;
+
+                    window.setTimeout(function () {
+                        let formData = $(".form").serialize();
+                        that.$store.dispatch('insertCard', formData).then(() => {
+                            that.insertCardSuccess = true;
+                            that.getIdeaCards(that.$route.params.id);
+                        }).catch((error) => {
+
+                        });
+                    }, 2000);
+                }
+            });
+        },
+        getIdeaCards(ideaID) {
+            this.$store.dispatch('getIdeaCards', ideaID).then((data) => {
+                this.cards = data["data"];
+            }).catch((error) => {
+            });
         },
     }
 }

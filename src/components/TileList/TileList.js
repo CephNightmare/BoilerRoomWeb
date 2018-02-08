@@ -1,4 +1,3 @@
-import TeamTile from "../../Tile/Teams/TeamTile.vue";
 
 export default {
     name: 'teamTiles',
@@ -6,7 +5,6 @@ export default {
         return {}
     },
     components: {
-        TeamTile
     },
     props: {
         list: {},

@@ -2,7 +2,15 @@
     <div class="container">
         <div class="row">
             <div class="small-24 column">
-                <teamTiles v-on:showModal="showModal = true" listTitle="Teams" listAddNew="Create a team" :list="teams" />
+                <div class="tileList">
+                    <template v-for="team in teams">
+                        <Tile :path="'Teams/' + team.ID" :title="team.teamName" :key="team.ID"></Tile>
+                    </template>
+
+                    <a @click="showModal = true" class="tileList__tile tile tile--cta">
+                        <h3 class="tile__title">Add Team</h3>
+                    </a>
+                </div>
             </div>
         </div>
 
@@ -29,7 +37,7 @@
                     </div>
                     <div class="form__group">
                         <button type="submit" class="float-left button form__submit" @click="insertTeam()"
-                                :disabled="errors.any()">Create idea
+                                :disabled="errors.any()">Create Team
                         </button>
                     </div>
                 </div>

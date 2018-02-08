@@ -1,5 +1,5 @@
 export default {
-    name: 'teamTile',
+    name: 'Tile',
     data () {
         return {
         }
@@ -7,6 +7,6 @@ export default {
     props: {
         ID: "",
         path: "",
-        TeamName: "",
+        title: "",
     }
 }

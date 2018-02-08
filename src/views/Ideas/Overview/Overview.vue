@@ -6,16 +6,32 @@
 
         <div class="row">
             <div class="small-24 column">
-                <ideaTiles @showModal="showModal = true" listAddNew="Create an idea" listTitle="Personal ideas"
-                           :list="personalIdeas"/>
+                <div class="tileList">
+                    <h2 class="tileList__title">Personal ideas</h2>
+
+                    <template v-for="idea in personalIdeas">
+                        <Tile :path="'./' + idea.ID" :title="idea.ideaName" :key="idea.ID"></Tile>
+                    </template>
+
+                    <a @click="showModal = true" class="tileList__tile tile tile--cta">
+                        <h3 class="tile__title">Add Idea</h3>
+                    </a>
+                </div>
             </div>
         </div>
 
         <template v-for="teamList in teamCollection">
                 <div class="row">
                     <div class="small-24 column">
-                        <ideaTiles @showModal="showModal = true" listAddNew="Create an idea"
-                                   :listTitle="teamList.teamName" :list="teamList.ideas"/>
+                        <h2 class="tileList__title">{{ teamList.teamName }}</h2>
+
+                        <template v-for="idea in teamList.ideas">
+                            <Tile :path="'Ideas/' + idea.ID" :title="idea.ideaName" :key="idea.ID"></Tile>
+                        </template>
+
+                        <a @click="showModal = true" class="tileList__tile tile tile--cta">
+                            <h3 class="tile__title">Add Idea</h3>
+                        </a>
                     </div>
                 </div>
         </template>

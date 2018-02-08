@@ -14,8 +14,8 @@
 
 <style lang="scss">
     @import '~abstracts';
-    @import '../TileList';
-    @import '../Tile';
+    @import '../../Tile/TileList';
+    @import '../../Tile/Tile';
 </style>
 
 <script src="./IdeaTiles.js"></script>

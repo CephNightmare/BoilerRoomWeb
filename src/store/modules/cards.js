@@ -25,7 +25,26 @@ const actions = {
                 reject();
             });
         });
-    }
+    },
+    insertCard({commit}, formData) {
+
+        return new Promise((resolve, reject) => {
+            cards.insertCard(formData, authentication.getters.authToken()).then(function (data) {
+                resolve(data);
+            }).catch(e => {
+                reject();
+            });
+        });
+    },
+    getIdeaCards({commit}, ideaID) {
+        return new Promise((resolve, reject) => {
+            cards.getIdeaCards(authentication.getters.authToken(), ideaID).then(function (data) {
+                resolve(data);
+            }).catch(e => {
+                reject();
+            });
+        });
+    },
 };
 
 export default {

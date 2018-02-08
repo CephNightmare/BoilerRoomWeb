@@ -43,16 +43,7 @@ const actions = {
                 reject();
             });
         });
-    },
-    getIdeaCards({commit}) {
-        return new Promise((resolve, reject) => {
-            ideas.getIdeaCards(authentication.getters.authToken()).then(function (data) {
-                resolve(data);
-            }).catch(e => {
-                reject();
-            });
-        });
-    },
+    }
 };
 
 export default {
