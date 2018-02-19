@@ -9,6 +9,7 @@ import Ideas from '@/views/Ideas/Index.vue'
 import IdeaOverview from '@/views/Ideas/Overview/Overview.vue'
 import IdeaDetail from '@/views/Ideas/Detail/Detail.vue'
 import IdeaCards from '@/views/Ideas/Cards/Cards.vue'
+import IdeaTodos from '@/views/Ideas/Todos/Todos.vue'
 
 import Teams from '@/views/Teams/Base/Teams.vue'
 
@@ -49,6 +50,11 @@ export default new Router({
                             path: ':id/Cards',
                             name: 'Cards',
                             component: IdeaCards,
+                        },
+                        {
+                            path: ':id/Todos',
+                            name: 'Todos',
+                            component: IdeaTodos,
                         }
                     ]
                 },

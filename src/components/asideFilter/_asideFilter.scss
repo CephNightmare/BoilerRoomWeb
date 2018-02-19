@@ -1,0 +1,16 @@
+.asideFilter {
+
+  &__list {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  &__listLink {
+    color: rgba(#000752, .4);
+    font-size: 15px;
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(#6F6B92, .1);
+    display: block;
+  }
+}

@@ -1,11 +1,17 @@
+import insertDialogue from '../../../components/insertDialogue/insertDialogue.vue';
+import asideFilter from '../../../components/asideFilter/asideFilter.vue';
+import todoList from '../../../components/todoList/todoList.vue';
+
 export default {
-    name: 'ideaDetail',
+    name: 'Cards',
     components: {
+        insertDialogue,
+        asideFilter,
+        todoList
     },
     data () {
         return {
-            showModal: false,
-            ideas: null
+            updateTodoList: false
         }
     },
     beforeMount(){
@@ -13,16 +19,11 @@ export default {
     },
     methods: {
         validateIdeaAccess(ideaID) {
-            console.log(ideaID);
-
             this.$store.dispatch('validateIdeaAccess', ideaID).then((data) => {
-
-                console.log("aight");
-
             }).catch((error) => {
                 this.$router.push({
                     name: 'Ideas',
-                    params: { validation: 'NOT_ALLOWED' }
+                    params: {validation: 'NOT_ALLOWED'}
                 });
             });
         }

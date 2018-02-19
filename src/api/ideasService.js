@@ -1,3 +1,5 @@
+import store from '../../src/store'
+
 export default {
     insertIdea (formData, token) {
         return new Promise((resolve, reject) => {
@@ -11,6 +13,51 @@ export default {
 
                     if (data["ok"] === 1) {
                         resolve(data["ideaID"]);
+                    } else {
+                        reject();
+                    }
+                }, error: function (error) {
+
+                    reject(error);
+                }
+            });
+        });
+    },
+    insertTodo (formData, token, ideaID) {
+        return new Promise((resolve, reject) => {
+            $.ajax({
+                type: 'POST',
+                url: 'http://boilerroomdata.gvandrunen.biz/ideas/todos/insert-todo.php',
+                data: {"formData": formData, "jwt": token, "ideaID": ideaID},
+                success: function (data) {
+
+                    data = JSON.parse(data);
+
+                    if (data["ok"] === 1) {
+                        console.log("resolved");
+                        resolve();
+                    } else {
+                        console.log("rejected");
+                        reject();
+                    }
+                }, error: function (error) {
+                    reject(error);
+                }
+            });
+        });
+    },
+    getTodos (token, ideaID) {
+        return new Promise((resolve, reject) => {
+            $.ajax({
+                type: 'POST',
+                url: 'http://boilerroomdata.gvandrunen.biz/ideas/todos/get-todos.php',
+                data: {"jwt": token, "ideaID": ideaID},
+                success: function (data) {
+
+                    data = JSON.parse(data);
+
+                    if (data["ok"] === 1) {
+                        resolve(data);
                     } else {
                         reject();
                     }

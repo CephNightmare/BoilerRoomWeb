@@ -25,12 +25,15 @@ export default {
         }
     },
     beforeMount(){
-        this.validateIdeaAccess(this.$route.params.id);
-        this.setIdeaID(this.$route.params.id);
-        this.getIdeaCards(this.$route.params.id);
+        this.validateIdeaAccess(this.$route.params['id']);
+        this.setIdeaID(this.$route.params['id']);
+        this.getIdeaCards(this.$route.params['id']);
     },
     methods: {
         validateIdeaAccess(ideaID) {
+
+            console.log(this.$route.params);
+
             this.$store.dispatch('validateIdeaAccess', ideaID).then((data) => {
             }).catch((error) => {
                 this.$router.push({
