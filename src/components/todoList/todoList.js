@@ -1,12 +1,9 @@
+import insertDialogue from '../../components/insertDialogue/insertDialogue.vue';
+
 export default {
     name: 'todoList',
-    props: {
-        "getTodoList": false
-    },
-    watch: {
-        getTodoList() {
-            this.getTodos();
-        }
+    components: {
+        insertDialogue
     },
     data() {
         return {
@@ -20,7 +17,6 @@ export default {
         getTodos() {
             this.$store.dispatch('getTodos', this.$route.params.id).then((data) => {
                 this.todos = data["data"];
-                this.$emit('todosUpdated');
             }).catch((error) => {
             });
         }

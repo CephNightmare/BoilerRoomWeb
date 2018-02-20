@@ -1,8 +1,12 @@
 <template>
-    <div class="todoList">
-        <template v-for="todo in todos">
-            <h1>{{ todo.todoTitle }}</h1>
-        </template>
+    <div class="todos">
+        <insertDialogue v-on:updateTodos="getTodos()"></insertDialogue>
+
+        <div class="todoList">
+            <template v-for="todo in todos">
+                <div class="todoList__item"><span>{{ todo.todoTitle }}</span></div>
+            </template>
+        </div>
     </div>
 </template>
 

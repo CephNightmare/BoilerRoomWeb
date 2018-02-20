@@ -1,6 +1,6 @@
 <template>
     <form class="insertDialogue">
-        <input class="insertDialogue__input" @keydown.enter.prevent='insertTodo()' id="todoTitle" name="todo Title" placeholder="Add new to-do..." />
+        <input class="insertDialogue__input" @keydown.enter.prevent='insertTodo()' id="todoTitle" ref="todoTitle" name="todo Title" placeholder="Add new to-do..." />
     </form>
 </template>
 

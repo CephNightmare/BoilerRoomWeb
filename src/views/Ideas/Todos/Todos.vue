@@ -6,9 +6,7 @@
             </aside>
 
             <div class="small-24 medium-16 large-20 column">
-                <insertDialogue v-on:updateTodos="updateTodoList = true"></insertDialogue>
-
-                <todoList v-on:todoListUpdated="updateTodoList = false" :getTodoList="updateTodoList"></todoList>
+                <todoList></todoList>
             </div>
         </div>
     </div>
