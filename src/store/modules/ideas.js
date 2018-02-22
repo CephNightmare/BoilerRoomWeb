@@ -1,14 +1,21 @@
 import ideas from '../../api/ideasService'
 import authentication from '../modules/authentication'
-import store from '../../store'
 
 // initial state
 // shape: [{ id, quantity }]
 const state = {
+    todoCategories: null,
+    todos: null
 };
 
 // getters
 const getters = {
+    todoCategories: function () {
+        return state.todoCategories
+    },
+    todos: function () {
+        return state.todos
+    },
 };
 
 // mutations
@@ -43,7 +50,33 @@ const actions = {
         return new Promise((resolve, reject) => {
 
             ideas.getTodos(authentication.getters.authToken(), ideaID).then(function (data) {
+                state.todos = data["data"];
+
                 resolve(data);
+            }).catch(e => {
+                reject();
+            });
+        });
+    },
+    addTodoCategory({commit}, data) {
+        return new Promise((resolve, reject) => {
+
+            let formData = data[0];
+            let ideaID = data[1];
+
+            ideas.addTodoCategory(formData, authentication.getters.authToken(), ideaID).then(function (data) {
+                resolve(data);
+            }).catch(e => {
+                reject();
+            });
+        });
+    },
+    updateTodoCategories({commit}, ideaID) {
+        return new Promise((resolve, reject) => {
+
+            ideas.updateTodoCategories(authentication.getters.authToken(), ideaID).then(function (data) {
+                resolve(data);
+                state.todoCategories = data["data"];
             }).catch(e => {
                 reject();
             });

@@ -3,7 +3,7 @@
         <div class="splashForm__contentWrapper">
             <div class="splashForm__form">
 
-                <Logo/>
+                <Logo />
 
                 <div class="splashForm__formContent">
                     <p class="splashForm__intro text-enter">Log in to start building your ideas.</p>
@@ -52,7 +52,6 @@
 <script>
     import Logo from '../components/logo/Logo'
     import {Validator} from 'vee-validate';
-    import {Store} from 'vuex';
 
     export default {
         name: 'Login',
@@ -103,7 +102,6 @@
                 })
             });
 
-            const that = this;
             const getQueryString = function (field, url) {
                 const href = url ? url : window.location.href;
                 const reg = new RegExp('[?&]' + field + '=([^&#]*)', 'i');

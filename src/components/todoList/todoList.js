@@ -5,9 +5,9 @@ export default {
     components: {
         insertDialogue
     },
-    data() {
-        return {
-            todos: null,
+    computed: {
+        todos() {
+            return this.$store.getters.todos
         }
     },
     beforeMount() {
@@ -15,9 +15,8 @@ export default {
     },
     methods: {
         getTodos() {
-            this.$store.dispatch('getTodos', this.$route.params.id).then((data) => {
-                this.todos = data["data"];
-            }).catch((error) => {
+            this.$store.dispatch('getTodos', this.$route.params.id).catch((error) => {
+
             });
         }
     }

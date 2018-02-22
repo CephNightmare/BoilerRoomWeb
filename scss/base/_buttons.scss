@@ -27,4 +27,16 @@
       color: $color-primary;
     }
   }
+
+  &--alt {
+    height: rem-calc(32);
+    line-height: rem-calc(32);
+    background-color: rgba(#000752, .05);
+    color: rgba(#000752, .5);
+    text-align: center;
+    font-size: rem-calc(11);
+    border-radius: rem-calc(2);
+    padding: 0 rem-calc(12);
+    display: block;
+  }
 }

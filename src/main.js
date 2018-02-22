@@ -6,10 +6,8 @@ import {sync} from 'vuex-router-sync';
 import store from './store/'
 import router from './router'
 import VeeValidate from 'vee-validate';
-import vueDraggable from 'vuedraggable';
 
 Vue.use(VeeValidate);
-Vue.use(vueDraggable);
 
 //router sync with vuex
 const unsync = sync(store, router);
