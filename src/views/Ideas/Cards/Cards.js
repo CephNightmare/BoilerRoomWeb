@@ -11,9 +11,19 @@ export default {
         modal,
         modalOverlay
     },
+    computed: {
+        CardCollectionList() {
+            return this.$store.getters.cardCollectionList;
+        },
+        CardList() {
+            return this.$store.getters.cards;
+        },
+        currentIdea() {
+            return this.$store.state.route.params['id'];
+        }
+    },
     data () {
         return {
-            cards: null,
             insertCardCollectionSuccess: false,
             insertCardCollectionSubmitted: false,
             showInsertCardCollectionModal: false,
@@ -24,16 +34,14 @@ export default {
             cardCollectionID: null,
         }
     },
-    beforeMount(){
-        this.validateIdeaAccess(this.$route.params['id']);
-        this.setIdeaID(this.$route.params['id']);
-        this.getIdeaCards(this.$route.params['id']);
+    created(){
+        this.validateIdeaAccess(this.currentIdea);
+        this.setIdeaID(this.currentIdea);
+        this.getIdeaCardCollections(this.currentIdea);
+        this.getIdeaCards(this.currentIdea);
     },
     methods: {
         validateIdeaAccess(ideaID) {
-
-            console.log(this.$route.params);
-
             this.$store.dispatch('validateIdeaAccess', ideaID).then((data) => {
             }).catch((error) => {
                 this.$router.push({
@@ -51,6 +59,18 @@ export default {
         },
         validateBeforeSubmit() {
             this.$validator.validateAll()
+        },
+        FilteredCards(category) {
+            console.log("filter stated");
+
+            let items = (this.CardList || []).filter(function (el) {
+                console.log(el);
+                console.log(el.cardCollectionID === category);
+
+                return el.cardCollectionID === category;
+            });
+
+            return items;
         },
         insertCardCollection() {
             this.$validator.validateAll().then((result) => {
@@ -78,20 +98,23 @@ export default {
 
                     window.setTimeout(function () {
                         let formData = $(".form").serialize();
-                        that.$store.dispatch('insertCard', formData).then(() => {
-                            that.insertCardSuccess = true;
-                            that.getIdeaCards(that.$route.params.id);
-                        }).catch((error) => {
 
+                        that.$store.dispatch('insertCard', [formData, that.currentIdea]).then(() => {
+                            that.insertCardSuccess = true;
+                            that.getIdeaCards(that.currentIdea);
+                        }).catch((error) => {
+                            console.log(error);
                         });
                     }, 2000);
                 }
             });
         },
+        getIdeaCardCollections(ideaID) {
+            this.$store.dispatch('getIdeaCardCollections', ideaID).catch((error) => {
+            });
+        },
         getIdeaCards(ideaID) {
-            this.$store.dispatch('getIdeaCards', ideaID).then((data) => {
-                this.cards = data["data"];
-            }).catch((error) => {
+            this.$store.dispatch('getIdeaCards', ideaID).catch((error) => {
             });
         },
     }

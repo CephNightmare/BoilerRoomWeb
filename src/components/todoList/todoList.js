@@ -8,6 +8,9 @@ export default {
     computed: {
         todos() {
             return this.$store.getters.todos
+        },
+        todoCategoriesList() {
+            return this.$store.getters.todoCategories;
         }
     },
     beforeMount() {
@@ -18,6 +21,14 @@ export default {
             this.$store.dispatch('getTodos', this.$route.params.id).catch((error) => {
 
             });
+        },
+        filteredTodos(category) {
+
+            let items = (this.todos || []).filter(function (el) {
+                return (el.todoCategory || '') === category;
+            });
+
+            return items;
         }
     }
 }

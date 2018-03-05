@@ -5,7 +5,7 @@ import authentication from '../modules/authentication'
 // shape: [{ id, quantity }]
 const state = {
     todoCategories: null,
-    todos: null
+    todos: null,
 };
 
 // getters
@@ -15,7 +15,7 @@ const getters = {
     },
     todos: function () {
         return state.todos
-    },
+    }
 };
 
 // mutations

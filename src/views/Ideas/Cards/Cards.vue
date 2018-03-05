@@ -7,18 +7,17 @@
         <div class="tileList">
             <h2 class="tileList__title">Card Collections</h2>
 
-            <template v-for="cardCollection in cards">
+            <template v-for="cardCollection in this.CardCollectionList">
                 <div class="row">
                     <div class="small-24 column">
                         <h3>{{ cardCollection.collectionName }}</h3>
+                        <h1>{{ cardCollection.ID }}</h1>
 
-                        <template v-for="card in cardCollection.cards">
-                            <h4>{{card.cardName }}</h4>
+                        <template v-for="card in FilteredCards(cardCollection.ID)">
+                            <h4>{{ card.cardName }}</h4>
                         </template>
 
-                        <h1>{{ cardCollection.cardCollectionID }}</h1>
-                        <a href="#" class="button" @click="toggleInsertCardForm(cardCollection.cardCollectionID)">Add a card</a>
-
+                        <a href="#" class="button" @click="toggleInsertCardForm(cardCollection.ID)">Add a card</a>
                     </div>
                 </div>
             </template>
@@ -99,7 +98,6 @@
                         <span class="form__warning" :show="errors.has('Card content')">{{ errors.first('Card content') }}</span>
                     </div>
 
-                    <input v-validate="'required'" :value="ideaID" class="form__hidden" type="hidden" name="ideaID" />
                     <input v-validate="'required'" :value="cardCollectionID" class="form__hidden" type="hidden" name="cardCollectionID" />
 
                     <div class="form__group">
