@@ -1,7 +1,8 @@
 <template>
     <div class="container">
         <div class="row">
-            <aside class="small-24 medium-8 large-4 column">
+            <aside class="aside small-24 medium-8 large-4 column">
+                <asideList :list="integratedTodoCategoriesList"></asideList>
                 <asideList :list="todoCategoriesList"></asideList>
                 <addTodoCategory></addTodoCategory>
 

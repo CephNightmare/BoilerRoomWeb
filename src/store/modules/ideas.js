@@ -4,12 +4,16 @@ import authentication from '../modules/authentication'
 // initial state
 // shape: [{ id, quantity }]
 const state = {
+    integratedTodoCategories: null,
     todoCategories: null,
     todos: null,
 };
 
 // getters
 const getters = {
+    integratedTodoCategories: function () {
+        return state.integratedTodoCategories
+    },
     todoCategories: function () {
         return state.todoCategories
     },
@@ -75,8 +79,17 @@ const actions = {
         return new Promise((resolve, reject) => {
 
             ideas.updateTodoCategories(authentication.getters.authToken(), ideaID).then(function (data) {
+                let integratedTodos = (data["data"] || []).filter(function (el) {
+                    return (el.isIntegrated || '') === 1;
+                });
+                let todos = (data["data"] || []).filter(function (el) {
+                    return (el.isIntegrated || '') !== 1;
+                });
+
+                state.integratedTodoCategories = integratedTodos;
+                state.todoCategories = todos;
+
                 resolve(data);
-                state.todoCategories = data["data"];
             }).catch(e => {
                 reject();
             });

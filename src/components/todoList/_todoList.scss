@@ -1,4 +1,5 @@
 .todoList {
+  $todoList: &;
 
   &__item {
     border-radius: 3px;
@@ -9,5 +10,31 @@
     align-items: center;
     margin-bottom: 8px;
     padding: 0 24px;
+  }
+
+  &__checkWrapper {
+    position: relative;
+    overflow: hidden;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    border: 2px solid rgba(27, 15, 34, 0.08);
+  }
+
+  &__checkIcon {
+    background-color: #50E3C2;
+    border: 2px solid #50E3C2;
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    border-radius: 50%;
+    opacity: 0;
+  }
+
+  &__checkbox {
+    position: absolute;
+    left: -999px;
   }
 }

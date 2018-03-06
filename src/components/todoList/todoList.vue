@@ -6,7 +6,13 @@
             <template v-for="todoCategory in this.todoCategoriesList">
                 <h3 v-if="filteredTodos(todoCategory.ID).length">{{ todoCategory.title }}</h3>
                 <template v-for="todo in filteredTodos(todoCategory.ID)">
-                    <div class="todoList__item"><span>{{ todo.todoTitle }}</span></div>
+                    <div class="todoList__item">
+                        <label :for="todo.ID" class="todoList__checkWrapper">
+                            <input class="todoList__checkbox" :name="todo.ID" type="checkbox" />
+                            <span class="todoList__checkIcon"></span>
+                        </label>
+                        <span>{{ todo.todoTitle }}</span>
+                    </div>
                 </template>
             </template>
         </div>

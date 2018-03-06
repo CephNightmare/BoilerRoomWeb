@@ -5,9 +5,12 @@ import addTodoCategory from '../../../components/addTodoCategory/addTodoCategory
 export default {
     name: 'Cards',
     computed: {
+        integratedTodoCategoriesList() {
+            return this.$store.getters.integratedTodoCategories;
+        },
         todoCategoriesList() {
             return this.$store.getters.todoCategories;
-        }
+        },
     },
     components: {
         asideList,
