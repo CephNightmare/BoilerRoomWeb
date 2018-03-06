@@ -24,20 +24,22 @@ export default {
         });
     },
     insertTodo (formData, token, ideaID) {
+
+        console.log(formData);
+
         return new Promise((resolve, reject) => {
             $.ajax({
                 type: 'POST',
                 url: 'http://boilerroomdata.gvandrunen.biz/ideas/todos/insert-todo.php',
                 data: {"formData": formData, "jwt": token, "ideaID": ideaID},
                 success: function (data) {
-
+                    console.log(data);
                     data = JSON.parse(data);
 
+
                     if (data["ok"] === 1) {
-                        console.log("resolved");
                         resolve();
                     } else {
-                        console.log("rejected");
                         reject();
                     }
                 }, error: function (error) {

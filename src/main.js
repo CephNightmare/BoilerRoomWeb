@@ -21,4 +21,4 @@ new Vue({
         App
     },
     render: h => h(App)
-})
+});

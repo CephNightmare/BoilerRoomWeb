@@ -1,12 +1,10 @@
 import modal from '../../../components/Modal/Modal.vue';
 import modalOverlay from '../../../components/Modal/ModalOverlay.vue';
-import CardList from '../../../components/CardList/CardList.vue';
 import Tile from '../../../components/Tile/Tile.vue';
 
 export default {
     name: 'Cards',
     components: {
-        CardList,
         Tile,
         modal,
         modalOverlay
