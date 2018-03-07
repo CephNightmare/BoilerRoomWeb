@@ -7,6 +7,7 @@ const state = {
     integratedTodoCategories: null,
     todoCategories: null,
     todos: null,
+    currentIdeaTitle: null
 };
 
 // getters
@@ -23,8 +24,7 @@ const getters = {
 };
 
 // mutations
-const mutations = {
-};
+const mutations = {};
 
 // actions
 const actions = {
@@ -55,7 +55,6 @@ const actions = {
 
             ideas.getTodos(authentication.getters.authToken(), ideaID).then(function (data) {
                 state.todos = data["data"];
-
                 resolve(data);
             }).catch(e => {
                 reject();
@@ -79,15 +78,15 @@ const actions = {
         return new Promise((resolve, reject) => {
 
             ideas.updateTodoCategories(authentication.getters.authToken(), ideaID).then(function (data) {
-                let integratedTodos = (data["data"] || []).filter(function (el) {
+                let integratedTodoCategories = (data["data"] || []).filter(function (el) {
                     return (el.isIntegrated || '') === 1;
                 });
-                let todos = (data["data"] || []).filter(function (el) {
+                let todoCategories = (data["data"] || []).filter(function (el) {
                     return (el.isIntegrated || '') !== 1;
                 });
 
-                state.integratedTodoCategories = integratedTodos;
-                state.todoCategories = todos;
+                state.integratedTodoCategories = integratedTodoCategories;
+                state.todoCategories = todoCategories;
 
                 resolve(data);
             }).catch(e => {
@@ -107,7 +106,16 @@ const actions = {
     validateIdeaAccess ({commit}, ideaID) {
         return new Promise((resolve, reject) => {
             ideas.validateIdeaAccess(authentication.getters.authToken(), ideaID).then(function (data) {
-                console.log("resolved");
+                resolve(data);
+            }).catch(e => {
+                reject();
+            });
+        });
+    },
+    getIdeaDetails ({commit}, ideaID) {
+        return new Promise((resolve, reject) => {
+            ideas.getIdeaDetails(authentication.getters.authToken(), ideaID).then(function (data) {
+                state.currentIdeaTitle = data["ideaName"];
                 resolve(data);
             }).catch(e => {
                 reject();

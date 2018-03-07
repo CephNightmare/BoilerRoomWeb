@@ -21,5 +21,5 @@
 
 <style lang="scss">
     // Import Main styles for this application
-    @import './scss/style';
+    @import '../scss/main';
 </style>

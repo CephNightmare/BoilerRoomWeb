@@ -1,3 +1,39 @@
+/// <reference path='../_reference.scss' />
+@import url("https://use.typekit.net/jus5gie.css");
+
+body {
+    font-family: $font-family;
+}
+
 h1, h2, h3, h4, h5, h6 {
-  font-family: $font-primary;
+    margin: 0;
+}
+
+h1, .h1 {
+    font-size: rem-calc(27);
+    font-weight: 300;
+}
+
+h2, .h2 {
+    // custom h2 styles
+}
+
+h3, .h3 {
+    // custom h3 styles
+}
+
+h4, .h4 {
+    // custom h4 styles
+}
+
+h5, .h5 {
+    // custom h5 styles
+}
+
+h6, .h6 {
+    // custom h6 styles
+}
+
+p {
+    margin-top: 0;
 }

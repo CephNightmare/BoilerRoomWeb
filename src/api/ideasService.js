@@ -152,5 +152,25 @@ export default {
                 }
             });
         });
+    },
+    getIdeaDetails (token, ideaID) {
+        return new Promise((resolve, reject) => {
+            $.ajax({
+                type: 'POST',
+                url: 'http://boilerroomdata.gvandrunen.biz/ideas/get-idea-details.php',
+                data: {"jwt": token, "ideaID": ideaID},
+                success: function (data) {
+                    data = JSON.parse(data);
+
+                    if (data["ok"] === 1) {
+                        resolve(data["data"]);
+                    } else {
+                        reject();
+                    }
+                }, error: function (error) {
+                    reject(error);
+                }
+            });
+        });
     }
 }

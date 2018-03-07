@@ -1,28 +1,94 @@
 .header {
-  height: $header-height;
-  background-color: $color-primary;
-  color: $color-white;
-  box-shadow: 0 1px 15px 1px rgba(113, 106, 202, .1);
-  padding: 16px 0;
+    height: $header-height;
+    background-color: map-deep-get($colors, 'black', 'default');
+    color: map-deep-get($colors, 'white', 'default');
+    padding: rem-calc(12) 0 0 0;
+    transition: height .5s cubic-bezier(.2, 0, 0, 1);
 
-  &__list {
-    list-style-type: none;
-    padding: 0;
-    margin: 0 0 0 56px;
-    display: inline-block;
-  }
-
-  &__listItem {
-    display: inline-block;
-    margin-right: 32px;
-  }
-
-  &__listLink {
-    color: rgba($color-white, .5);
-    transition: $transition-default;
-
-    &--active, &:hover, &:focus  {
-      color: $color-white;
+    &__grid {
+        grid-template-rows: 1fr 1fr 1fr;
+        height: 100%;
     }
-  }
+
+    &__title {
+        transition: all .5s cubic-bezier(.2, 0, 0, 1);
+        opacity: 1;
+
+        &--enter, &--leaveTo {
+            transform: translateY(-30%);
+            opacity: 0;
+        }
+    }
+
+    &__list {
+        list-style-type: none;
+        display: inline-block;
+    }
+
+    &__listItem {
+        display: inline-block;
+    }
+
+    &__listLink, &__subListLink {
+        color: rgba(map-deep-get($colors, 'white', 'default'), .5);
+        text-decoration: none;
+        transition: $transition-default;
+        margin-right: rem-calc(32);
+        font-size: rem-calc(13);
+        display: inline-block;
+
+        &:hover,
+        &:focus,
+        &--active {
+            color: map-deep-get($colors, 'white', 'default');
+        }
+    }
+
+    &__subList {
+        height: 100%;
+        display: flex;
+        align-items: flex-end;
+        list-style-type: none;
+        overflow: hidden;
+        transition: all .5s cubic-bezier(.2, 0, 0, 1) .1s;
+        opacity: 1;
+
+        &--enter, &--leaveTo {
+            transform: translateY(-30%);
+            opacity: 0;
+        }
+    }
+
+    &__subListLink {
+        padding-bottom: rem-calc(16);
+        position: relative;
+
+        &::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 0;
+            height: 3px;
+            background-color: map-deep-get($colors, 'green', 'default');
+            display: block;
+            transition: $transition-default;
+        }
+
+        &:hover {
+            &::after {
+                width: 50%;
+            }
+        }
+
+        &--active {
+            &::after {
+                width: 100%;
+            }
+        }
+    }
+
+    &--expanded {
+        height: $header-expanded-height;
+    }
 }

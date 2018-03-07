@@ -59,12 +59,7 @@ export default {
             this.$validator.validateAll()
         },
         FilteredCards(category) {
-            console.log("filter stated");
-
             let items = (this.CardList || []).filter(function (el) {
-                console.log(el);
-                console.log(el.cardCollectionID === category);
-
                 return el.cardCollectionID === category;
             });
 

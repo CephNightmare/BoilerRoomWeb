@@ -1,29 +1,28 @@
 export default {
     name: 'ideaDetail',
-    components: {
-    },
+    components: {},
     data () {
         return {
             showModal: false,
-            ideas: null
+            ideaDetails: null
         }
     },
     beforeMount(){
         this.validateIdeaAccess(this.$route.params['id']);
+        this.getIdeaDetails(this.$route.params['id']);
     },
     methods: {
         validateIdeaAccess(ideaID) {
-            console.log(ideaID);
-
-            this.$store.dispatch('validateIdeaAccess', ideaID).then((data) => {
-
-                console.log("aight");
-
-            }).catch((error) => {
+            this.$store.dispatch('validateIdeaAccess', ideaID).catch((error) => {
                 this.$router.push({
                     name: 'Ideas',
-                    params: { validation: 'NOT_ALLOWED' }
+                    params: {validation: 'NOT_ALLOWED'}
                 });
+            });
+        },
+        getIdeaDetails(ideaID) {
+            this.$store.dispatch('getIdeaDetails', ideaID).then((data) => {
+                this.ideaDetails = data;
             });
         }
     }

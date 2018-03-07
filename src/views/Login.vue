@@ -75,7 +75,7 @@
                         var formData = $(".form").serialize();
                         this.$store.dispatch('authenticateUser', formData).then(() => {
 
-                            this.$router.push('ideas')
+                            this.$router.push('Ideas/Overview')
 
                         }).catch((error) => {
                             this.registerCompleted = true;

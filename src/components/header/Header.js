@@ -9,7 +9,8 @@ export default {
                 {name: 'Teams', path: '/Teams'}
             ],
             ideaNav: [
-                {name: 'Cards', path: 'Cards'}
+                {name: 'Cards', path: 'Cards'},
+                {name: 'Todos', path: 'Todos'}
             ]
         }
     },
@@ -18,8 +19,11 @@ export default {
     },
     methods: {
         subIsActive(input) {
-            const paths = Array.isArray(input) ? input : [input]
+            const paths = Array.isArray(input) ? input : [input];
             return paths.some(path => {
+                console.log(paths);
+                console.log(this.$route.path);
+                console.log(this.$route.path.indexOf(path) === 0);
                 return this.$route.path.indexOf(path) === 0 // current path starts with this path string
             })
         }

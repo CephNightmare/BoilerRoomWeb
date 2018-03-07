@@ -1,27 +1,31 @@
-$color-white: #ffffff;
-$color-black: #000000;
+﻿//
+// Typography
+$font-family: 'Soleil', 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+$global-font-size: 16px;
 
-$color-primary: #1B0F22;
-$color-secondary: #6F6B92;
+//
+// Breakpoints
+// Make sure these are the same as the grid system breakpoints!
+$breakpoints: ('sm': 0, 'md': 640px, 'lg': 1024px, 'xl': 1200px, 'xxl': 1440px,);
 
-$color-bg: #f0f2f7;
-$color-border: #d7d7d7;
+//
+// Colors
+$colors: (
+        'black': ('default': #1B0F22),
+        'white': ('dark': #F0F2F7, 'default': #ffffff),
+        'green': ('default': #50E3C2, 'light': #F6FDFC),
+        'grey': ('lightest': #E2E7F2, 'light': #9DA9C2, 'dark': #6F6B92),
+        'orange': ('default': #FFB20B),
+        'red': ('default', #D0021B)
+);
 
+//
+// Transition defaults
+$transition-default-smoothing: ease-in-out;
+$transition-default-time: .2s;
+$transition-default: all $transition-default-time $transition-default-smoothing;
 
-
-$color-warning: #ff0000;
-$color-success: green;
-
-$color-lime: lime;
-$color-green: green;
-$color-red: red;
-$color-pink: pink;
-$color-yellow: yellow;
-$color-blue: blue;
-
-$transition-default: all .2s ease-in-out;
-
-$border-radius-default: 5px;
-$border-radius-small: 3px;
-
-$header-height: 140px;
+//
+//Header
+$header-height: 130px;
+$header-expanded-height: 180px;
